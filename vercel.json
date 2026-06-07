@@ -4,5 +4,13 @@
   "outputDirectory": ".",
   "framework": null,
   "cleanUrls": false,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/pol%C3%ADtica-de-privacidade", "destination": "/politica-de-privacidade", "permanent": true },
+    { "source": "/pol%C3%ADtica-de-privacidade/", "destination": "/politica-de-privacidade/", "permanent": true },
+    { "source": "/termos-e-condi%C3%A7%C3%B5es", "destination": "/termos-e-condicoes", "permanent": true },
+    { "source": "/termos-e-condi%C3%A7%C3%B5es/", "destination": "/termos-e-condicoes/", "permanent": true },
+    { "source": "/servi%C3%A7os", "destination": "/servicos", "permanent": true },
+    { "source": "/servi%C3%A7os/(.*)", "destination": "/servicos/$1", "permanent": true }
+  ]
 }
