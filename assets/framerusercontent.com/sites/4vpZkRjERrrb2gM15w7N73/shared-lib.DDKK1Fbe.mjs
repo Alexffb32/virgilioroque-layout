@@ -1,0 +1,2 @@
+import{t as e}from"./rolldown-runtime.Co4_kzzg.mjs";function t(e,t){return{description:`A Construir o Futúro`,favicon:(location.origin+"/assets/framerusercontent.com/assets/U8AoJx6JZyodmEfcQ1HoW5cME.png"),robots:`max-image-preview:large`,title:`Virgilio Roque`}}var n=e((()=>{}));export{t as n,n as t};
+//# sourceMappingURL=shared-lib.DDKK1Fbe.mjs.map
