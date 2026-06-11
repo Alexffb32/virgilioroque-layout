@@ -11,6 +11,20 @@
     { "source": "/termos-e-condi%C3%A7%C3%B5es", "destination": "/termos-e-condicoes", "permanent": true },
     { "source": "/termos-e-condi%C3%A7%C3%B5es/", "destination": "/termos-e-condicoes/", "permanent": true },
     { "source": "/servi%C3%A7os", "destination": "/servicos", "permanent": true },
-    { "source": "/servi%C3%A7os/(.*)", "destination": "/servicos/$1", "permanent": true }
+    { "source": "/servi%C3%A7os/(.*)", "destination": "/servicos/$1", "permanent": true },
+    { "source": "/servicos/projetos-reabilita%C3%A7%C3%A3o-urbana", "destination": "/servicos/projetos-reabilitacao-urbana", "permanent": true },
+    { "source": "/servicos/obras-p%C3%BAblicas", "destination": "/servicos/obras-publicas", "permanent": true },
+    { "source": "/obras/cidade-nova", "destination": "/obras/empreendimento-cidade-nova", "permanent": true },
+    { "source": "/obras/cidade-nova/", "destination": "/obras/empreendimento-cidade-nova/", "permanent": true },
+    { "source": "/obras/mexilhoeira-grande", "destination": "/obras/edificio-faculdade-medicina", "permanent": true },
+    { "source": "/obras/mexilhoeira-grande/", "destination": "/obras/edificio-faculdade-medicina/", "permanent": true },
+    { "source": "/obras/linhas-ferreas", "destination": "/obras/estacao-tortosendo", "permanent": true },
+    { "source": "/obras/linhas-ferreas/", "destination": "/obras/estacao-tortosendo/", "permanent": true },
+    { "source": "/obras/bloco-habitacional", "destination": "/obras/bloco-habitacional-quinta-do-pinheiro", "permanent": true },
+    { "source": "/obras/bloco-habitacional/", "destination": "/obras/bloco-habitacional-quinta-do-pinheiro/", "permanent": true },
+    { "source": "/obras/duplex", "destination": "/obras", "permanent": true },
+    { "source": "/obras/duplex/", "destination": "/obras", "permanent": true },
+    { "source": "/obras/centro-interpretativo-da-cereja", "destination": "/obras", "permanent": true },
+    { "source": "/obras/centro-interpretativo-da-cereja/", "destination": "/obras", "permanent": true }
   ]
 }
