@@ -1,0 +1,17 @@
+/* ============================================================
+   Customizações globais do site — Virgilio Roque
+   Carregado em todas as páginas.
+   ============================================================ */
+
+/* Esconder o cookie banner default do Framer (canto inferior
+   direito, "Utilizamos cookies essenciais...").
+   Mantemos o banner custom novo que está no centro da página.
+   O elemento continua no DOM (não rebenta o React) mas fica
+   invisível e sem ocupar espaço.                                */
+[class*="framer-cookie-banner-container"],
+[class*="framer-lib-cookie-banner"],
+[class*="framer-cookie-banner-type-"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
