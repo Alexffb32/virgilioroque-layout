@@ -76,4 +76,43 @@
   } else {
     startObserver();
   }
+
+  /* ============================================================
+     Esconder links no footer cujo texto não corresponde à
+     identidade da Virgilio Roque (ex: "Grupo Empresarial" —
+     terminologia herdada do template Framer / Covialvi).
+     CSS3 não tem :contains(), por isso usamos JS para apanhar.
+     ============================================================ */
+  const UNWANTED_LINK_TEXTS = ['Grupo Empresarial'];
+
+  function hideUnwantedLinks() {
+    document.querySelectorAll('a').forEach(function (a) {
+      const t = (a.textContent || '').trim();
+      if (UNWANTED_LINK_TEXTS.indexOf(t) !== -1) {
+        a.style.display = 'none';
+        /* Também esconde o <p> pai se for o único conteúdo dele,
+           para não deixar um parágrafo vazio a ocupar espaço.    */
+        const parent = a.parentElement;
+        if (parent && parent.tagName === 'P' && parent.children.length === 1) {
+          parent.style.display = 'none';
+        }
+      }
+    });
+  }
+
+  function startUnwantedLinksObserver() {
+    hideUnwantedLinks();
+    const observer = new MutationObserver(hideUnwantedLinks);
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+    });
+    setTimeout(() => observer.disconnect(), 30000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startUnwantedLinksObserver);
+  } else {
+    startUnwantedLinksObserver();
+  }
 })();
