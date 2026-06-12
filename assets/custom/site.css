@@ -15,3 +15,31 @@
   visibility: hidden !important;
   pointer-events: none !important;
 }
+
+/* ============================================================
+   Esconder secções do template Framer não desejadas pelo cliente
+   - Quote Section: citação inspiradora genérica
+   - How It Works Section: passos do processo do template
+   - Testimonial Section: testemunhas placeholder
+   - Blog Section: lista de artigos (também escondida em /sobre e /artigos)
+   - Brand Wrapper + Client Wrapper: logos de empresas (inclui "Covialvi")
+   Mantemos no DOM para o React do Framer não rebentar.
+   ============================================================ */
+[data-framer-name="Quote Section"],
+[data-framer-name="How It Works Section"],
+[data-framer-name="Testimonial Section"],
+[data-framer-name="Blog Section"],
+[data-framer-name="Brand Wrapper"],
+[data-framer-name="Client Wrapper"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Esconder o link "Artigos" do menu (em todos os menus: header
+   desktop, hambúrguer mobile). Mantemos o resto da navegação.   */
+a[data-framer-name="Menu Link"][href="./artigos"],
+a[data-framer-name="Menu Link"][href="../artigos"],
+a[data-framer-name="Menu Link"][href="/artigos"] {
+  display: none !important;
+}

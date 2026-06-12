@@ -25,6 +25,9 @@
     { "source": "/obras/duplex", "destination": "/obras", "permanent": true },
     { "source": "/obras/duplex/", "destination": "/obras", "permanent": true },
     { "source": "/obras/centro-interpretativo-da-cereja", "destination": "/obras", "permanent": true },
-    { "source": "/obras/centro-interpretativo-da-cereja/", "destination": "/obras", "permanent": true }
+    { "source": "/obras/centro-interpretativo-da-cereja/", "destination": "/obras", "permanent": true },
+    { "source": "/artigos", "destination": "/", "permanent": true },
+    { "source": "/artigos/", "destination": "/", "permanent": true },
+    { "source": "/artigos/(.*)", "destination": "/", "permanent": true }
   ]
 }
