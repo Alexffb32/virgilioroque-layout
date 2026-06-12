@@ -1,7 +1,8 @@
 /* ============================================================
    Customizações globais do site — Virgilio Roque
-   - Polyfill multi-range fetch (essencial para o CMS do Framer
-     funcionar no Vercel)
+   ESTRATÉGIA SIMPLES E DEFINITIVA:
+   - Forçar reload completo em cada navegação (desactiva o
+     client-side router do Framer, que está a falhar)
    - Cookie banner: localStorage flags + CSS fallback
    - Esconder "Grupo Empresarial" via polling leve
    ============================================================ */
@@ -9,120 +10,66 @@
   'use strict';
 
   /* ============================================================
-     POLYFILL: multi-range HTTP fetch para .framercms
+     FORÇAR NAVEGAÇÃO TRADICIONAL (NÃO-SPA)
      ============================================================
-     O Framer usa Range: bytes=A-B,C-D,... para carregar registos
-     do CMS. O CDN da Vercel NÃO suporta multi-range (responde com
-     HTTP 200 + ficheiro inteiro em vez de 206 Multipart). Quando
-     o Framer compara tamanho recebido vs. esperado, aborta com
-     "Unexpected response length" e a página fica em loop.
+     O client-side router do Framer está a falhar em runtime no
+     Vercel: carregamento dinâmico de páginas entra em loop.
 
-     A solução: interceptar fetch() para .framercms. Quando vem
-     com multi-range, fazemos N pedidos sequenciais com single
-     range cada, e concatenamos as respostas no mesmo formato que
-     o Framer espera (bytes contíguos, na ordem das ranges).
-     ============================================================ */
-  (function patchFetchForMultiRange() {
-    if (typeof window === 'undefined' || !window.fetch) return;
-    const originalFetch = window.fetch.bind(window);
+     Estratégia: interceptar TODOS os cliques em <a> internos e
+     forçar window.location.assign(), que faz reload completo.
+     O Framer perde a "magia" SPA mas cada página carrega como
+     site tradicional — sempre fiável.
 
-    function parseRanges(rangeHeader) {
-      /* Aceita "bytes=A-B,C-D,E-F" — devolve [[A,B],[C,D],[E,F]] */
-      if (!rangeHeader) return null;
-      const m = /^bytes=(.+)$/i.exec(String(rangeHeader).trim());
-      if (!m) return null;
-      const parts = m[1].split(',').map(function (p) {
-        const seg = p.trim().split('-');
-        return [parseInt(seg[0], 10), parseInt(seg[1], 10)];
-      });
-      if (parts.some(function (p) { return isNaN(p[0]) || isNaN(p[1]); })) return null;
-      return parts;
-    }
+     Capturamos no document em fase de capture (true) para vir
+     antes dos handlers do Framer.                                */
+  document.addEventListener(
+    'click',
+    function (e) {
+      /* Ignorar se a tecla modificadora está premida (ctrl-click =
+         abrir em nova tab, etc.) — deixa o browser tratar.        */
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (e.button !== 0) return; /* só clique esquerdo */
 
-    function getRangeHeader(init) {
-      if (!init || !init.headers) return null;
-      const h = init.headers;
-      if (h instanceof Headers) return h.get('Range') || h.get('range');
-      if (typeof h.get === 'function') return h.get('Range') || h.get('range');
-      if (Array.isArray(h)) {
-        for (const pair of h) {
-          if (String(pair[0]).toLowerCase() === 'range') return pair[1];
-        }
-        return null;
+      /* Procurar o <a> mais próximo no caminho do evento.        */
+      let target = e.target;
+      while (target && target !== document) {
+        if (target.tagName === 'A') break;
+        target = target.parentNode;
       }
-      return h.Range || h.range || null;
-    }
+      if (!target || target.tagName !== 'A') return;
 
-    function isFramercmsURL(input) {
+      const href = target.getAttribute('href');
+      if (!href) return;
+
+      /* Ignorar anchors, telefones, emails, ficheiros JS/CSS.    */
+      if (href.startsWith('#')) return;
+      if (href.startsWith('mailto:')) return;
+      if (href.startsWith('tel:')) return;
+      if (href.startsWith('javascript:')) return;
+
+      /* Resolver URL absoluto para comparar host.                */
+      let resolvedURL;
       try {
-        const u = typeof input === 'string' ? input : input.url;
-        return /\.framercms(\?|$)/.test(u);
-      } catch (e) {
-        return false;
+        resolvedURL = new URL(href, location.href);
+      } catch (err) {
+        return;
       }
-    }
 
-    async function fetchSingleRange(input, init, range) {
-      const headers = new Headers(init && init.headers ? init.headers : {});
-      headers.set('Range', 'bytes=' + range[0] + '-' + range[1]);
-      const newInit = Object.assign({}, init || {}, { headers: headers });
-      const resp = await originalFetch(input, newInit);
-      if (!resp.ok && resp.status !== 206) {
-        throw new Error('Single-range fetch failed: ' + resp.status);
-      }
-      return await resp.arrayBuffer();
-    }
+      /* Links externos: deixa o browser/Framer tratar (target=_blank etc) */
+      if (resolvedURL.host !== location.host) return;
 
-    window.fetch = async function (input, init) {
-      try {
-        if (!isFramercmsURL(input)) {
-          return originalFetch(input, init);
-        }
-        const rangeHeader = getRangeHeader(init);
-        if (!rangeHeader) {
-          return originalFetch(input, init);
-        }
-        const ranges = parseRanges(rangeHeader);
-        /* Só intervimos se houver MAIS DE UM range — single-range
-           funciona bem no Vercel.                                  */
-        if (!ranges || ranges.length <= 1) {
-          return originalFetch(input, init);
-        }
-        /* Multi-range: fazemos N pedidos sequenciais e concatenamos.
-           Sequencial (não Promise.all) para reduzir picos de rede.  */
-        const buffers = [];
-        let totalLength = 0;
-        for (const r of ranges) {
-          const buf = await fetchSingleRange(input, init, r);
-          buffers.push(buf);
-          totalLength += buf.byteLength;
-        }
-        const combined = new Uint8Array(totalLength);
-        let offset = 0;
-        for (const buf of buffers) {
-          combined.set(new Uint8Array(buf), offset);
-          offset += buf.byteLength;
-        }
-        /* Resposta sintética com o formato que o Framer espera.   */
-        return new Response(combined.buffer, {
-          status: 206,
-          statusText: 'Partial Content',
-          headers: {
-            'Content-Type': 'application/octet-stream',
-            'Content-Length': String(totalLength),
-          },
-        });
-      } catch (e) {
-        /* Em caso de erro, fallback para fetch original — pior
-           cenário é o erro original "Unexpected response length",
-           mas pelo menos não pior do que estava antes.            */
-        console.warn('[VR] multi-range polyfill error:', e);
-        return originalFetch(input, init);
-      }
-    };
-  })();
+      /* Se o link tem target=_blank, não interferir.              */
+      if (target.target && target.target !== '_self') return;
 
-  /* --- Suprimir o cookie banner default do Framer ---             */
+      /* Forçar reload completo via location.assign.              */
+      e.preventDefault();
+      e.stopPropagation();
+      window.location.assign(resolvedURL.href);
+    },
+    true /* useCapture = true: corre antes do Framer */
+  );
+
+  /* --- Suprimir o cookie banner default do Framer ---            */
   try {
     if (!localStorage.getItem('framerCookiesDismissed')) {
       localStorage.setItem('framerCookiesDismissed', '1');
@@ -131,15 +78,14 @@
       localStorage.setItem('framerCookiesAutoAccepted', '1');
     }
   } catch (e) {
-    /* localStorage falha em Safari privado — CSS trata.            */
+    /* localStorage falha em Safari privado — CSS trata.           */
   }
 
-  /* --- Esconder "Grupo Empresarial" e outros textos placeholder
-     no footer via polling leve.                                    */
+  /* --- Esconder "Grupo Empresarial" via polling leve.            */
   const UNWANTED_LINK_TEXTS = ['Grupo Empresarial'];
   let pollIntervalId = null;
   let pollCount = 0;
-  const POLL_MAX_TICKS = 32; /* 32 ticks × 250ms = 8s */
+  const POLL_MAX_TICKS = 32; /* 32 × 250ms = 8s */
 
   function hideUnwantedLinksOnce() {
     const links = document.querySelectorAll('a:not([data-vr-hidden])');
