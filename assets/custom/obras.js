@@ -120,8 +120,8 @@ Um projeto de referência que espelha o rigor técnico e a assinatura de confian
   }
 
   /* Aplica os textos da obra à página. O Framer faz hydration
-     assíncrono — usamos MutationObserver para esperar até os
-     componentes aparecerem no DOM.                              */
+     assíncrono — fazemos polling (no init) até os componentes
+     aparecerem no DOM.                                          */
   function applyObraContent(obra) {
     const titleEl = document.querySelector('[data-framer-name="Property Name"]');
     const locationEl = document.querySelector('[data-framer-name="Property Location"]');
@@ -308,15 +308,19 @@ Um projeto de referência que espelha o rigor técnico e a assinatura de confian
     let carouselDone = injectCarousel(obra);
     if (textsDone && carouselDone) return;
 
-    const observer = new MutationObserver(() => {
+    /* Polling em vez de MutationObserver: evita ping-pong com a
+       hidratação do React do Framer. 4Hz por 8 segundos, pára
+       logo que ambos os trabalhos estejam feitos.                */
+    let ticks = 0;
+    const MAX_TICKS = 32; /* 32 × 250ms = 8s */
+    const intervalId = setInterval(function () {
+      ticks++;
       if (!textsDone) textsDone = applyObraContent(obra);
       if (!carouselDone) carouselDone = injectCarousel(obra);
-      if (textsDone && carouselDone) observer.disconnect();
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    /* Safety: para de observar ao fim de 10s para não correr para sempre */
-    setTimeout(() => observer.disconnect(), 10000);
+      if ((textsDone && carouselDone) || ticks >= MAX_TICKS) {
+        clearInterval(intervalId);
+      }
+    }, 250);
   }
 
   if (document.readyState === 'loading') {
