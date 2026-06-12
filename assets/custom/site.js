@@ -82,32 +82,55 @@
      identidade da Virgilio Roque (ex: "Grupo Empresarial" —
      terminologia herdada do template Framer / Covialvi).
      CSS3 não tem :contains(), por isso usamos JS para apanhar.
+
+     IMPORTANTE: marcamos os links já tratados com data-vr-hidden
+     para evitar ciclos com o MutationObserver — sem este guard,
+     cada mudança de style.display dispara outra mutação, que
+     dispara o handler de novo, e o browser congela.
      ============================================================ */
   const UNWANTED_LINK_TEXTS = ['Grupo Empresarial'];
 
   function hideUnwantedLinks() {
-    document.querySelectorAll('a').forEach(function (a) {
+    /* Selector inclui :not([data-vr-hidden]) para nunca tocar
+       num link que já foi escondido — quebra o ciclo do observer. */
+    const links = document.querySelectorAll('a:not([data-vr-hidden])');
+    let hiddenCount = 0;
+    links.forEach(function (a) {
       const t = (a.textContent || '').trim();
       if (UNWANTED_LINK_TEXTS.indexOf(t) !== -1) {
+        a.setAttribute('data-vr-hidden', '1');
         a.style.display = 'none';
-        /* Também esconde o <p> pai se for o único conteúdo dele,
-           para não deixar um parágrafo vazio a ocupar espaço.    */
+        hiddenCount++;
         const parent = a.parentElement;
         if (parent && parent.tagName === 'P' && parent.children.length === 1) {
           parent.style.display = 'none';
         }
       }
     });
+    return hiddenCount;
   }
 
   function startUnwantedLinksObserver() {
     hideUnwantedLinks();
-    const observer = new MutationObserver(hideUnwantedLinks);
+
+    /* Debounce: só corre 1x por animation frame, para não ser
+       chamado 100x por segundo em páginas com muitas mutations. */
+    let rafId = null;
+    const observer = new MutationObserver(function () {
+      if (rafId) return;
+      rafId = requestAnimationFrame(function () {
+        rafId = null;
+        hideUnwantedLinks();
+      });
+    });
     observer.observe(document.documentElement, {
       childList: true,
       subtree: true,
+      /* NÃO observamos mudanças de atributos — evita ciclo onde
+         o nosso próprio style.display dispara outra mutação.    */
+      attributes: false,
     });
-    setTimeout(() => observer.disconnect(), 30000);
+    setTimeout(() => observer.disconnect(), 15000);
   }
 
   if (document.readyState === 'loading') {
