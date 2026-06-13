@@ -81,42 +81,7 @@
     /* localStorage falha em Safari privado — CSS trata.           */
   }
 
-  /* --- Esconder "Grupo Empresarial" via polling leve.            */
-  const UNWANTED_LINK_TEXTS = ['Grupo Empresarial'];
-  let pollIntervalId = null;
-  let pollCount = 0;
-  const POLL_MAX_TICKS = 32; /* 32 × 250ms = 8s */
-
-  function hideUnwantedLinksOnce() {
-    const links = document.querySelectorAll('a:not([data-vr-hidden])');
-    links.forEach(function (a) {
-      const t = (a.textContent || '').trim();
-      if (UNWANTED_LINK_TEXTS.indexOf(t) !== -1) {
-        a.setAttribute('data-vr-hidden', '1');
-        a.style.display = 'none';
-        const parent = a.parentElement;
-        if (parent && parent.tagName === 'P' && parent.children.length === 1) {
-          parent.style.display = 'none';
-        }
-      }
-    });
-  }
-
-  function startLinkHiding() {
-    hideUnwantedLinksOnce();
-    pollIntervalId = setInterval(function () {
-      pollCount++;
-      hideUnwantedLinksOnce();
-      if (pollCount >= POLL_MAX_TICKS) {
-        clearInterval(pollIntervalId);
-        pollIntervalId = null;
-      }
-    }, 250);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startLinkHiding);
-  } else {
-    startLinkHiding();
-  }
+  /* O link "Grupo Empresarial" foi removido directamente do HTML
+     de todas as 26 páginas no commit que introduziu esta versão
+     do site.js. Já não precisamos de o esconder via JS.          */
 })();
