@@ -78,16 +78,46 @@
 
     'edificio-faculdade-medicina': {
       title: 'Edifício Junto à Faculdade de Medicina',
+      subtitle: 'Centralidade, Conforto e Excelência',
       location: 'Covilhã, Portugal',
       shortDescription:
         'Edifício residencial junto à Faculdade de Medicina da UBI, ideal para investimento ou habitação própria.',
-      longDescription: `Localizado numa zona de excelência e de elevada procura na Covilhã, junto à Faculdade de Medicina da UBI e ao Hospital, este edifício residencial reflete o padrão de rigor e qualidade construtiva da Virgílio Roque. Projetado para oferecer uma excelente oportunidade de investimento ou habitação própria, o empreendimento destaca-se pela modernidade, eficiência energética e centralidade.
-
-Engenharia e Sustentabilidade — A construção foi planeada com foco na durabilidade e no desempenho energético: isolamento térmico e acústico de alta performance, integração de painéis fotovoltaicos para otimização dos consumos de energia, e estrutura sólida com materiais de gama superior que asseguram uma manutenção reduzida ao longo dos anos.
-
-Interiores e Tecnologia — Os apartamentos apresentam layouts funcionais com divisões invulgarmente espaçosas e uma excelente exposição solar. Conforto térmico total assegurado por sistemas de ar condicionado e bomba de calor. Equipamentos tecnológicos de uso diário como sistema de controlo de estores e central de aspiração robotizada. Cozinhas modernas com acabamentos em alto brilho, equipadas com bancadas em Silestone (ou equivalente) e eletrodomésticos encastrados Teka (ou equivalente).
-
-Mobilidade e Acabamentos Premium — Parqueamento privativo estruturado em piso subterrâneo, lugares de estacionamento dotados de possibilidade de instalação para carregamento de veículos elétricos, e acabamentos de excelência em todas as divisões, incluindo pavimento vinílico de alta resistência e madeiras lacadas.`,
+      details: {
+        intro:
+          'Localizado numa zona de excelência e de elevada procura na Covilhã, junto à Faculdade de Medicina da UBI e ao Hospital, este edifício residencial reflete o padrão de rigor e qualidade construtiva da Virgílio Roque. Projetado para oferecer uma excelente oportunidade de investimento ou habitação própria, o empreendimento destaca-se pela modernidade, eficiência energética e centralidade.',
+        sections: [
+          {
+            heading: 'Engenharia e Sustentabilidade',
+            paragraph:
+              'A construção foi planeada com foco na durabilidade e no desempenho energético, utilizando soluções técnicas avançadas:',
+            bullets: [
+              'Isolamento térmico e acústico de alta performance, garantindo bem-estar e total privacidade no interior das frações.',
+              'Integração de painéis fotovoltaicos para otimização dos consumos de energia e redução do impacto ambiental.',
+              'Estrutura sólida com materiais de gama superior que asseguram uma manutenção reduzida ao longo dos anos.',
+            ],
+          },
+          {
+            heading: 'Interiores e Tecnologia',
+            paragraph:
+              'Os apartamentos apresentam layouts funcionais com divisões invulgarmente espaçosas e uma excelente exposição solar:',
+            bullets: [
+              'Conforto térmico total assegurado por sistemas de ar condicionado e bomba de calor.',
+              'Equipamentos tecnológicos de uso diário, como sistema de controlo de estores e central de aspiração robotizada.',
+              'Cozinhas modernas com acabamentos em alto brilho, equipadas com bancadas em Silestone ou equivalente e eletrodomésticos encastrados Teka ou equivalente.',
+            ],
+          },
+          {
+            heading: 'Mobilidade e Acabamentos Premium',
+            paragraph:
+              'O edifício foi pensado para responder às necessidades atuais de segurança e conveniência:',
+            bullets: [
+              'Parqueamento privativo estruturado em piso subterrâneo.',
+              'Lugares de estacionamento dotados de possibilidade de instalação para carregamento de veículos elétricos.',
+              'Acabamentos de excelência em todas as divisões, incluindo pavimento vinílico de alta resistência e madeiras lacadas.',
+            ],
+          },
+        ],
+      },
       photos: photos('edificio-faculdade-medicina', 'png', 4),
     },
 
