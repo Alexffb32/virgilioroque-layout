@@ -14,26 +14,23 @@
   display: none !important;
 }
 
-/* ============================================================
-   ESCONDER O HERO PLACEHOLDER nas páginas legais.
-   O legal.js move o .vr-legal para fora do hero (insere como
-   sibling do Footer Section). Por isso o hero original — com
-   placeholder "Termos e Condições" em cima do fundo da máquina
-   de escrever — fica vazio e devia desaparecer.
-
-   Apanhar pelo Text Wrapper que estava a conter o título <h1>.
-   :has() apanha só na página legal porque legal.css só carrega lá. */
-[data-framer-name="Desktop"]:has(> div > div > [data-framer-name="Text Wrapper"] > h1),
-[data-framer-name="Tablet"]:has(> div > div > [data-framer-name="Text Wrapper"] > h1),
-[data-framer-name="Phone"]:has(> div > div > [data-framer-name="Text Wrapper"] > h1) {
-  display: none !important;
-}
+/* O hero placeholder é escondido via JavaScript (legal.js
+   chama hidePlaceholderHero() em todos os 3 breakpoints — mais
+   robusto que CSS :has() que depende da hierarquia exata).      */
 
 /* Garantir que o page container respira (em vez de height fixed). */
 body:has(.vr-legal) div:has(> header[data-framer-name="Header Primary"]) {
   height: auto !important;
   min-height: 100vh !important;
   overflow: visible !important;
+}
+
+/* Fundo escuro próprio do .vr-legal — corresponde ao design dark
+   do resto do site e garante contraste com o texto branco.       */
+.vr-legal {
+  background: var(--token-b5c2bd97-636a-4be4-bff8-79dcbb7d1100, #0a1119);
+  /* Estender visualmente para os lados (mesmo se o parent é mais
+     estreito) usando padding generoso lateral.                    */
 }
 
 .vr-legal {

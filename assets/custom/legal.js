@@ -415,16 +415,28 @@
     return root;
   }
 
+  /* Esconde o hero placeholder (Desktop/Tablet/Phone) — mostra
+     texto "Termos e Condições" mesmo nas páginas de Privacidade
+     e Cookies. CSS :has() selectors são frágeis (hierarquia
+     varia); JavaScript é robusto.                                */
+  function hidePlaceholderHero() {
+    /* Apanhar todos os 3 breakpoints. Tipicamente só um está
+       visível mas escondemos todos para garantir.                */
+    ['Desktop', 'Tablet', 'Phone'].forEach(function (name) {
+      const el = document.querySelector('[data-framer-name="' + name + '"]');
+      if (el && el.querySelector('h1') && el.style.display !== 'none') {
+        el.style.display = 'none';
+      }
+    });
+  }
+
   /* Estratégia: o template do Framer tem o hero ("Desktop") dentro
      de um page container flex com height fixo. Injectar o nosso
      conteúdo lá dentro causa o conteúdo a transbordar (invisível
      ou sobreposto com o footer).
 
      Em vez disso, INSERIMOS o .vr-legal como sibling do Footer
-     Section, dentro do mesmo flex container. Como flex column,
-     fica entre o hero (collapsed) e o footer.
-
-     Escondemos o hero original separadamente via CSS.            */
+     Section, dentro do mesmo flex container.                     */
   function injectLegalContent(page) {
     /* Idempotente: se já está como sibling do Footer Section, OK. */
     const existing = document.querySelector('.vr-legal');
@@ -466,11 +478,13 @@
        Framer que podem apagar o nosso conteúdo logo depois da
        hidratação. Polling tem custo desprezável (1 query × 32). */
     injectLegalContent(page);
+    hidePlaceholderHero();
     let ticks = 0;
     const MAX_TICKS = 32;
     const intervalId = setInterval(function () {
       ticks++;
       injectLegalContent(page);
+      hidePlaceholderHero();
       /* Reaplica o título caso o React o tenha mudado */
       if (document.title !== `${page.title} — Virgilio Roque`) {
         updateBrowserTitle(page);
