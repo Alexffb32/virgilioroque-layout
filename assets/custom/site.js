@@ -294,6 +294,20 @@
       fixObraCards();
       if (ticks >= MAX_TICKS) clearInterval(intervalId);
     }, 250);
+
+    /* O menu hamburger mobile é lazy-mounted (Framer só renderiza
+       os items quando o utilizador abre o menu). Como o polling
+       inicial pode ter parado antes disso, re-aplicamos o fix
+       em CADA clique no documento. Idempotente via data-vr-fixed,
+       custo desprezável.                                          */
+    document.addEventListener(
+      'click',
+      function () {
+        setTimeout(fixNavLinks, 50);
+        setTimeout(fixNavLinks, 400); /* após animação Framer */
+      },
+      true /* capture phase: antes dos handlers do Framer */
+    );
   }
 
   if (document.readyState === 'loading') {
