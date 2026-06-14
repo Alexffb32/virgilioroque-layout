@@ -283,28 +283,68 @@
     });
   }
 
+  /* ============================================================
+     ESCONDER ITEMS PLACEHOLDER NO DROPDOWN "SOBRE NÓS"
+     ============================================================
+     O dropdown "Sobre Nós" no menu hamburger mostra:
+       Páginas Internas
+       A Nossa Historia
+       Recrutamento
+       Empreendimento Cidade Nova   ← placeholder errado!
+
+     "Empreendimento Cidade Nova" não devia estar aqui (é uma obra,
+     não uma página interna sobre a empresa). Esconde-se sempre
+     que esse texto aparece FORA da Case Section.
+     ============================================================ */
+  function hideStaleMenuItems() {
+    document.querySelectorAll('p:not([data-vr-stale-hidden]), a:not([data-vr-stale-hidden])').forEach(function (el) {
+      const text = (el.textContent || '').replace(/ /g, ' ').trim();
+      /* "Empreendimento Cidade Nova" só é legítimo dentro da
+         Case Section (cards da home) ou dentro do <h1>/<h2>
+         do título da página da obra. Em qualquer outro lugar
+         (especialmente menus / dropdowns) — esconder.            */
+      if (text === 'Empreendimento Cidade Nova' || text === 'Empreendimento Cidade NovaCovilhã') {
+        const inCaseSection = el.closest('[data-framer-name="Case Section"]');
+        const inObraTitle = el.closest('[data-framer-name="Property Name"]') ||
+                            el.closest('[data-framer-name="Header"]');
+        if (!inCaseSection && !inObraTitle) {
+          el.setAttribute('data-vr-stale-hidden', '1');
+          el.style.display = 'none';
+        }
+      }
+    });
+  }
+
   function startNavFixer() {
     fixNavLinks();
     fixObraCards();
+    hideStaleMenuItems();
     let ticks = 0;
     const MAX_TICKS = 32;
     const intervalId = setInterval(function () {
       ticks++;
       fixNavLinks();
       fixObraCards();
+      hideStaleMenuItems();
       if (ticks >= MAX_TICKS) clearInterval(intervalId);
     }, 250);
 
     /* O menu hamburger mobile é lazy-mounted (Framer só renderiza
        os items quando o utilizador abre o menu). Como o polling
-       inicial pode ter parado antes disso, re-aplicamos o fix
-       em CADA clique no documento. Idempotente via data-vr-fixed,
-       custo desprezável.                                          */
+       inicial pode ter parado antes disso, re-aplicamos os fixes
+       em CADA clique no documento. Idempotente via markers
+       data-vr-fixed e data-vr-stale-hidden, custo desprezável.    */
     document.addEventListener(
       'click',
       function () {
-        setTimeout(fixNavLinks, 50);
-        setTimeout(fixNavLinks, 400); /* após animação Framer */
+        setTimeout(function () {
+          fixNavLinks();
+          hideStaleMenuItems();
+        }, 50);
+        setTimeout(function () {
+          fixNavLinks();
+          hideStaleMenuItems();
+        }, 400); /* após animação Framer */
       },
       true /* capture phase: antes dos handlers do Framer */
     );
