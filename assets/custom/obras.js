@@ -21,18 +21,58 @@
   const OBRAS = {
     'empreendimento-cidade-nova': {
       title: 'Empreendimento Cidade Nova',
+      subtitle: 'Engenharia e Conforto na Covilhã',
       location: 'Covilhã, Portugal',
       shortDescription:
         'Condomínio moderno no coração da Covilhã com apartamentos de tipologias variadas e acabamentos de alta qualidade.',
-      longDescription: `Situado numa localização estratégica no centro da Covilhã, junto à Faculdade e a diversas escolas, o empreendimento Cidade Nova reflete o compromisso da Virgílio Roque com a construção de alta qualidade. Este condomínio fechado combina arquitetura contemporânea, rigor técnico e espaços de lazer exclusivos.
-
-Qualidade Construtiva e Sustentabilidade — A estrutura foi projetada com soluções técnicas de excelência, com foco na eficiência e na durabilidade: isolamento térmico e acústico superior, integração de painéis fotovoltaicos para otimização dos consumos energéticos, e acabamentos de elevada resistência (pavimentos vinílicos, madeiras lacadas, portas de alta segurança).
-
-Lazer e Espaços Comuns — O condomínio oferece infraestruturas residenciais diferenciadas: piscina de água aquecida com cobertura integrada para os meses de inverno, ginásio privativo para residentes, e áreas de convívio exteriores cuidadosamente planeadas.
-
-Interiores e Tecnologia — Os apartamentos apresentam layouts funcionais que maximizam a luz natural, complementados com sistema de controlo de estores, central de aspiração robotizada, climatização completa com ar condicionado nas divisões principais, cozinhas modernas com bancadas em Silestone (ou equivalente) e eletrodomésticos encastrados Teka (ou equivalente).
-
-Mobilidade e Segurança — Piso subterrâneo amplo e estruturado para estacionamento seguro, lugares de garagem privativos com opções de estacionamento duplo, e possibilidade de instalação para carregamento de veículos elétricos.`,
+      /* Descrição longa estruturada — renderizada como secção
+         própria abaixo do Overview. Formato:
+           intro: parágrafo introdutório
+           sections: [{ heading, paragraph?, bullets? }, ...]      */
+      details: {
+        intro:
+          'Situado numa localização estratégica no centro da Covilhã, junto à Faculdade e a diversas escolas, o empreendimento Cidade Nova reflete o compromisso da Virgílio Roque com a construção de alta qualidade. Este condomínio fechado combina arquitetura contemporânea, rigor técnico e espaços de lazer exclusivos.',
+        sections: [
+          {
+            heading: 'Qualidade Construtiva e Sustentabilidade',
+            paragraph:
+              'A estrutura foi projetada com soluções técnicas de excelência, com foco na eficiência e na durabilidade:',
+            bullets: [
+              'Isolamento térmico e acústico superior, garantindo total privacidade e bem-estar.',
+              'Integração de painéis fotovoltaicos para otimização dos consumos energéticos.',
+              'Acabamentos de elevada resistência, incluindo pavimentos vinílicos, madeiras lacadas e portas de alta segurança.',
+            ],
+          },
+          {
+            heading: 'Lazer e Espaços Comuns',
+            paragraph:
+              'O condomínio oferece infraestruturas residenciais diferenciadas para utilização ao longo de todo o ano:',
+            bullets: [
+              'Piscina de água aquecida com cobertura integrada para os meses de inverno.',
+              'Ginásio privativo para os residentes.',
+              'Áreas de convívio exteriores cuidadosamente planeadas.',
+            ],
+          },
+          {
+            heading: 'Interiores e Tecnologia',
+            paragraph:
+              'Os apartamentos apresentam layouts funcionais que maximizam a luz natural, complementados com tecnologia de conforto diário:',
+            bullets: [
+              'Sistema de controlo de estores e central de aspiração robotizada.',
+              'Climatização completa com ar condicionado nas divisões principais.',
+              'Cozinhas de linhas modernas com bancadas em Silestone ou equivalente e eletrodomésticos encastrados Teka ou equivalente.',
+            ],
+          },
+          {
+            heading: 'Mobilidade e Segurança',
+            bullets: [
+              'Piso subterrâneo amplo e estruturado para estacionamento seguro.',
+              'Lugares de garagem privativos, com opções de estacionamento duplo.',
+              'Possibilidade de instalação para carregamento de veículos elétricos.',
+            ],
+          },
+        ],
+      },
       photos: photos('empreendimento-cidade-nova', 'png', 10),
     },
 
@@ -119,6 +159,82 @@ Um projeto de referência que espelha o rigor técnico e a assinatura de confian
     return true;
   }
 
+  /* Constrói a secção de Detalhes (descrição longa estruturada).
+     Recebe details = { intro, sections: [{heading, paragraph?, bullets?}] }.
+     Devolve um <section> pronto a injectar.                       */
+  function buildDetailsSection(obra) {
+    if (!obra.details) return null;
+    const root = document.createElement('section');
+    root.className = 'vr-details';
+    root.setAttribute('aria-label', 'Descrição detalhada da obra');
+
+    /* Título da secção: subtitle da obra OU 'Sobre o Empreendimento' */
+    const heading = document.createElement('h2');
+    heading.className = 'vr-details__title';
+    heading.textContent = obra.subtitle || 'Sobre o Empreendimento';
+    root.appendChild(heading);
+
+    /* Parágrafo introdutório */
+    if (obra.details.intro) {
+      const intro = document.createElement('p');
+      intro.className = 'vr-details__intro';
+      intro.textContent = obra.details.intro;
+      root.appendChild(intro);
+    }
+
+    /* Cada secção: heading + paragraph opcional + bullets opcional */
+    (obra.details.sections || []).forEach(function (sec) {
+      const block = document.createElement('div');
+      block.className = 'vr-details__block';
+
+      if (sec.heading) {
+        const h = document.createElement('h3');
+        h.className = 'vr-details__heading';
+        h.textContent = sec.heading;
+        block.appendChild(h);
+      }
+      if (sec.paragraph) {
+        const p = document.createElement('p');
+        p.className = 'vr-details__paragraph';
+        p.textContent = sec.paragraph;
+        block.appendChild(p);
+      }
+      if (Array.isArray(sec.bullets) && sec.bullets.length > 0) {
+        const ul = document.createElement('ul');
+        ul.className = 'vr-details__bullets';
+        sec.bullets.forEach(function (item) {
+          const li = document.createElement('li');
+          li.textContent = item;
+          ul.appendChild(li);
+        });
+        block.appendChild(ul);
+      }
+      root.appendChild(block);
+    });
+
+    return root;
+  }
+
+  /* Injecta a secção de detalhes depois do Property Overview.
+     Idempotente: se já existe, não duplica.                       */
+  function injectDetailsSection(obra) {
+    if (!obra.details) return true; /* nada a fazer = "feito" */
+    if (document.querySelector('.vr-details')) return true;
+    const overviewEl = document.querySelector('[data-framer-name="Property Overview"]');
+    if (!overviewEl) return false;
+    const details = buildDetailsSection(obra);
+    if (!details) return true;
+    /* Inserir depois do bloco Property Overview, no mesmo nível.   */
+    const parent = overviewEl.parentElement;
+    if (!parent) return false;
+    if (overviewEl.nextSibling) {
+      parent.insertBefore(details, overviewEl.nextSibling);
+    } else {
+      parent.appendChild(details);
+    }
+    return true;
+  }
+
   /* Aplica os textos da obra à página. O Framer faz hydration
      assíncrono — fazemos polling (no init) até os componentes
      aparecerem no DOM.                                          */
@@ -143,6 +259,9 @@ Um projeto de referência que espelha o rigor técnico e a assinatura de confian
         applied++;
       }
     }
+    /* Injecta a secção de detalhes (long description) — só se a obra
+       tiver `details` definido.                                     */
+    injectDetailsSection(obra);
     return applied >= 3;
   }
 
