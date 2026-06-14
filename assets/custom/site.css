@@ -68,6 +68,22 @@ label[data-framer-name="Checkbox"] > div {
   min-width: 0 !important;
 }
 
+/* Form de recrutamento na /carreira em mobile: os containers
+   ancestrais (Content, Container, Details Section, Video Section)
+   têm height FIXO de 615-775px, mas o conteúdo do form ocupa
+   1552-1632px. O conteúdo extra transborda e fica sobre o footer.
+   Usamos :has(form) para forçar height:auto APENAS em containers
+   que envolvem um formulário — sem afectar outros usos do template. */
+[data-framer-name="Content"]:has(> form),
+[data-framer-name="Content"]:has(> div > form),
+[data-framer-name="Container"]:has(form),
+[data-framer-name="Video Section"]:has(form),
+[data-framer-name="Details Section"]:has(form),
+[data-framer-name="Form Wrapper"] {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
 /* ============================================================
    Limpeza de placeholders do footer (todas as páginas)
    ============================================================ */
