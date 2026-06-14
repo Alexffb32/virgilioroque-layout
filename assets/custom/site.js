@@ -307,66 +307,68 @@
      (Portefólio em y=200, Contactar em y=240 — completamente tapados
      pelo dropdown). Solução: empurrar os items irmãos que vêm depois
      de "Sobre Nós" para baixo do dropdown quando este estiver aberto.
+
+     IMPORTANTE: o dropdown box é position:fixed, por isso NÃO está
+     dentro da subárvore do "Sobre Nós" — está em outro ponto do DOM.
+     Detectamos o estado aberto pela existência do texto "Páginas
+     internas" visível em qualquer lugar do documento.
      ============================================================ */
   function adjustDropdownLayout() {
-    /* Encontrar o "Sobre Nós" no menu drawer aberto */
+    /* Detectar dropdown aberto: procurar "Páginas internas" visível */
+    let dropdownOpenMarker = null;
+    document.querySelectorAll('p, span').forEach(function (el) {
+      if (dropdownOpenMarker) return;
+      const t = el.textContent.trim().toLowerCase();
+      if (t === 'páginas internas') {
+        const r = el.getBoundingClientRect();
+        if (r.width > 0 && r.height > 0) dropdownOpenMarker = el;
+      }
+    });
+
+    /* Encontrar o item "Sobre Nós" no menu drawer (variante visível) */
     const sobreP = Array.from(document.querySelectorAll('p')).find(function (p) {
       return p.textContent.trim() === 'Sobre Nós' && p.getBoundingClientRect().width > 0;
     });
     if (!sobreP) return;
 
-    /* Walk up até encontrar o container do item "Sobre Nós" dentro
-       do drawer (geralmente o framer-rrp2at-container ou similar).  */
+    /* Subir até ao child direto do container "Links" — esse é o
+       "Sobre Nós item" cujos siblings precisam empurrar.            */
     let sobreItem = sobreP;
-    for (let i = 0; i < 6 && sobreItem.parentElement; i++) {
+    for (let i = 0; i < 8 && sobreItem.parentElement; i++) {
       const parent = sobreItem.parentElement;
       if (parent.getAttribute('data-framer-name') === 'Links') break;
       sobreItem = parent;
     }
+    if (sobreItem.parentElement?.getAttribute('data-framer-name') !== 'Links') return;
 
-    /* Procurar o dropdown box (position:fixed dentro da árvore do
-       Sobre Nós).                                                    */
-    let dropdownBox = null;
-    const candidates = sobreItem.querySelectorAll('*');
-    for (const c of candidates) {
-      const cs = getComputedStyle(c);
-      if (cs.position === 'fixed' && c.getBoundingClientRect().height > 50) {
-        dropdownBox = c;
-        break;
-      }
-    }
+    /* Achar o primeiro sibling depois do "Sobre Nós" no container.  */
+    const firstSiblingAfter = sobreItem.nextElementSibling;
+    if (!firstSiblingAfter) return;
 
-    const isOpen = !!dropdownBox;
-    /* Achar os siblings de "Sobre Nós" no container Links */
-    const siblingsAfter = [];
-    let cur = sobreItem.nextElementSibling;
-    while (cur) {
-      siblingsAfter.push(cur);
-      cur = cur.nextElementSibling;
-    }
+    const isOpen = !!dropdownOpenMarker;
 
     if (isOpen) {
-      /* Aplicar offset aos siblings depois de "Sobre Nós".
-         Altura do dropdown + 20px de respiro.                       */
+      /* Procurar a height do dropdown box pelo ancestor com
+         position:fixed do marker.                                   */
+      let dropdownBox = dropdownOpenMarker;
+      for (let i = 0; i < 8 && dropdownBox.parentElement; i++) {
+        const cs = getComputedStyle(dropdownBox);
+        if (cs.position === 'fixed') break;
+        dropdownBox = dropdownBox.parentElement;
+      }
       const dropH = Math.round(dropdownBox.getBoundingClientRect().height);
-      const offset = dropH + 20;
-      siblingsAfter.forEach(function (sib) {
-        if (sib.getAttribute('data-vr-dropdown-offset') !== String(offset)) {
-          sib.style.marginTop = '';
-          if (sib === sobreItem.nextElementSibling) {
-            sib.style.marginTop = offset + 'px';
-          }
-          sib.setAttribute('data-vr-dropdown-offset', String(offset));
-        }
-      });
+      const offset = Math.max(dropH + 20, 200); /* mínimo 200px */
+      const currentOffset = firstSiblingAfter.getAttribute('data-vr-dropdown-offset');
+      if (currentOffset !== String(offset)) {
+        firstSiblingAfter.style.marginTop = offset + 'px';
+        firstSiblingAfter.setAttribute('data-vr-dropdown-offset', String(offset));
+      }
     } else {
-      /* Dropdown fechado — limpar offsets anteriores */
-      siblingsAfter.forEach(function (sib) {
-        if (sib.hasAttribute('data-vr-dropdown-offset')) {
-          sib.style.marginTop = '';
-          sib.removeAttribute('data-vr-dropdown-offset');
-        }
-      });
+      /* Dropdown fechado — limpar margem */
+      if (firstSiblingAfter.hasAttribute('data-vr-dropdown-offset')) {
+        firstSiblingAfter.style.marginTop = '';
+        firstSiblingAfter.removeAttribute('data-vr-dropdown-offset');
+      }
     }
   }
 
