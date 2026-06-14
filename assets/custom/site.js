@@ -247,16 +247,31 @@
   }
 
   /* RESCATE: reverter o bug anterior em que findCardContainer subiu
-     até "Container" e aplicou display:none ao wrapper de todos os
-     cards da página /obras. Limpa inline display:none de qualquer
-     elemento com data-framer-name="Container" ou similar.          */
+     até níveis errados e aplicou display:none aos wrappers/containers
+     de cards de obras. Limpa display:none inline em:
+     1. Elementos com data-framer-name colectivo (Container, Content,
+        Grid, Section)
+     2. QUALQUER descendente da Case Section / Service Section (cards
+        sem data-framer-name mas com class framer-*)
+     Os cards das obras que devem ficar escondidos (SLUGS_TO_HIDE)
+     vão ser re-escondidos pelo fixObraCards a seguir.               */
   function uncoverHiddenObraCards() {
+    /* 1) Containers com nome */
     document
-      .querySelectorAll('[data-framer-name="Container"][style*="display"], [data-framer-name="Content"][style*="display"], [data-framer-name="Grid"][style*="display"]')
+      .querySelectorAll(
+        '[data-framer-name="Container"][style*="display"],' +
+          '[data-framer-name="Content"][style*="display"],' +
+          '[data-framer-name="Grid"][style*="display"]'
+      )
       .forEach(function (el) {
-        if (el.style.display === 'none') {
-          el.style.display = '';
-        }
+        if (el.style.display === 'none') el.style.display = '';
+      });
+
+    /* 2) Descendentes da Case Section com display:none inline */
+    document
+      .querySelectorAll('[data-framer-name="Case Section"] [style*="display"]')
+      .forEach(function (el) {
+        if (el.style.display === 'none') el.style.display = '';
       });
   }
 
