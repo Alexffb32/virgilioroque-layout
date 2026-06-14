@@ -5,6 +5,15 @@
    Reusa as CSS variables do site para coerência visual.
    ============================================================ */
 
+/* Esconder a 'Section - Terms & Conditions' do template Framer:
+   contém texto duplicado/desatualizado das políticas (formato
+   coloquial sem styling). O conteúdo correto fica no nosso
+   .vr-legal injectado pelo legal.js.
+   O mesmo data-framer-name é usado nas 3 páginas legais. */
+[data-framer-name="Section - Terms & Conditions"] {
+  display: none !important;
+}
+
 .vr-legal {
   font-family: 'Geist', 'Inter', system-ui, sans-serif;
   color: var(--token-59d490ae-42b4-4932-b976-7e1960b9ea0c, #ffffff);
