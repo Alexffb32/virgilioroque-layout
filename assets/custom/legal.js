@@ -416,9 +416,17 @@
   }
 
   /* Encontra o Text Wrapper principal (o que tem o título da página
-     com <h1>) e substitui o seu conteúdo pela nossa secção legal. */
+     com <h1>) e substitui o seu conteúdo pela nossa secção legal.
+     Devolve true se a injecção foi feita NESTA chamada, false caso
+     contrário (já estava feita ou não há onde injectar).            */
   function injectLegalContent(page) {
-    if (document.querySelector('.vr-legal')) return true;
+    /* Se a nossa secção já está presente E o pai dela ainda é o
+       Text Wrapper, está tudo OK. Mas se o React do Framer
+       re-renderizou e tirou a nossa secção, precisamos reinjectar. */
+    const existing = document.querySelector('.vr-legal');
+    if (existing && existing.closest('[data-framer-name="Text Wrapper"]')) {
+      return false; /* nada a fazer mas continuamos a polling */
+    }
 
     /* Procura o primeiro Text Wrapper com <h1> — é o container do
        título "Termos e Condições" placeholder.                    */
@@ -447,14 +455,21 @@
     const page = PAGES[slug];
     updateBrowserTitle(page);
 
-    if (injectLegalContent(page)) return;
-
-    /* Polling 4Hz × 8s para apanhar a hidratação assíncrona       */
+    /* Tenta injectar imediatamente, depois faz polling 4Hz × 8s
+       sempre até ao fim — para resistir a re-renders do React do
+       Framer que podem apagar o nosso conteúdo logo depois da
+       hidratação. Polling tem custo desprezável (1 query × 32). */
+    injectLegalContent(page);
     let ticks = 0;
     const MAX_TICKS = 32;
     const intervalId = setInterval(function () {
       ticks++;
-      if (injectLegalContent(page) || ticks >= MAX_TICKS) {
+      injectLegalContent(page);
+      /* Reaplica o título caso o React o tenha mudado */
+      if (document.title !== `${page.title} — Virgilio Roque`) {
+        updateBrowserTitle(page);
+      }
+      if (ticks >= MAX_TICKS) {
         clearInterval(intervalId);
       }
     }, 250);
