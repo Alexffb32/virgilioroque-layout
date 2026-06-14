@@ -127,6 +127,9 @@
     'Contacto': '/contacto',
     /* Blog: já não existe — esconder */
     'Blog': '__hide__',
+    /* Grupo Empresarial: item placeholder do template (apareceu
+       no dropdown "Sobre Nós" do menu hamburger lazy-mounted) */
+    'Grupo Empresarial': '__hide__',
   };
 
   function fixNavLinks() {
