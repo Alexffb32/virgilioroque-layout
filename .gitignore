@@ -3,3 +3,12 @@
 obra-*-mobile-*.png
 *-mobile-*.png
 .claude/scheduled_tasks.lock
+
+# Screenshots locais (auditoria mobile)
+privacidade-*.jpg
+obra-*.jpg
+home-*.jpg
+sobre-*.jpg
+servicos-*.jpg
+contacto-*.jpg
+termos-*.jpg
