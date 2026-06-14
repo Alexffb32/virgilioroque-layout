@@ -2,3 +2,4 @@
 .playwright-mcp/
 obra-*-mobile-*.png
 *-mobile-*.png
+.claude/scheduled_tasks.lock
