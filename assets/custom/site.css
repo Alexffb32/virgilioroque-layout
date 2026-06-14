@@ -44,6 +44,30 @@ a[data-framer-name="Menu Link"][href="/artigos"] {
   display: none !important;
 }
 
+/* Box do dropdown "Sobre Nós" no menu hamburger — a imagem dos
+   diamantes (background pattern) excedia os limites da box (saía
+   23px para cima e para baixo). overflow:hidden corta para o
+   tamanho da box.
+   .framer-v-1kmtwrf é a classe gerada pelo Framer para o wrapper
+   do dropdown (300x174px com border arredondado).               */
+.framer-v-1kmtwrf {
+  overflow: hidden !important;
+}
+
+/* Checkbox "Li e aceito os Termos..." no formulário de contacto:
+   o <label data-framer-name="Checkbox"> tem width:100px fixo,
+   fazendo o texto longo (70px efectivo) quebrar a 1 palavra por
+   linha. Forçamos a width: 100% para usar todo o espaço do form. */
+label[data-framer-name="Checkbox"] {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+label[data-framer-name="Checkbox"] > div {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+}
+
 /* ============================================================
    Limpeza de placeholders do footer (todas as páginas)
    ============================================================ */

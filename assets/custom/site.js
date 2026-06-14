@@ -208,30 +208,60 @@
     return m ? m[1] : null;
   }
 
-  /* Encontra o "card container" — o elemento mais próximo que
-     parece o card todo (não só o <a> interno). Heurística: subir
-     enquanto o tamanho do elemento crescer; parar quando atingir
-     uma section ou grid container típico do Framer.                */
+  /* Encontra o "card container" individual — APENAS o card, NUNCA
+     um wrapper que contenha múltiplos cards.
+
+     Heurística (BUG anterior subiu até "Container" da Case Section
+     e escondia todos os cards da página /obras):
+     - Apenas 1-2 níveis acima do <a>
+     - Parar IMEDIATAMENTE se o parent imediato tem nome com "Grid",
+       "List", "Section" ou "Wrapper" (sinal que somos siblings de
+       outros cards no mesmo container)
+     - Nunca retornar elemento cujo data-framer-name termine em
+       "Section" ou "Container" (esses englobam vários cards).      */
   function findCardContainer(anchor) {
     let cur = anchor;
-    let lastArea = 0;
-    /* Subir até 6 níveis ou enquanto a área aumenta              */
-    for (let i = 0; i < 6 && cur && cur.parentElement; i++) {
-      const r = cur.getBoundingClientRect();
-      const area = r.width * r.height;
-      /* Se o pai é a "Case Section" ou "Service Section", já
-         demos um nível a mais — devolve current.                 */
-      const parentName = cur.parentElement.getAttribute('data-framer-name') || '';
-      if (/Section$/.test(parentName) || /Wrapper$/.test(parentName)) {
+    for (let i = 0; i < 2 && cur && cur.parentElement; i++) {
+      const parent = cur.parentElement;
+      const parentName = parent.getAttribute('data-framer-name') || '';
+      /* Se já estamos a um nível onde o parent agrupa cards, ficamos
+         aqui (não subir mais).                                      */
+      if (/^(Grid|List|Cards|Cases|Case Section|Service Section|Content|Container)$/.test(parentName)) {
         return cur;
       }
-      cur = cur.parentElement;
-      lastArea = area;
+      /* Se o cur em si é um Section/Container, não devolver — está
+         demasiado alto. Devolver o nível abaixo.                    */
+      const curName = cur.getAttribute('data-framer-name') || '';
+      if (/^(Section$|Container$|Content$|Grid$|Cases$|Wrapper$)/.test(curName)) {
+        return anchor; /* fallback: esconder só o link, não o grid */
+      }
+      cur = parent;
     }
-    return anchor;
+    /* Validação final: se o cur que vamos devolver tem nome de
+       container colectivo, voltar ao anchor para não esconder demais. */
+    const finalName = cur.getAttribute('data-framer-name') || '';
+    if (/^(Section|Container|Content|Grid|Cases|Wrapper)$/.test(finalName)) {
+      return anchor;
+    }
+    return cur;
+  }
+
+  /* RESCATE: reverter o bug anterior em que findCardContainer subiu
+     até "Container" e aplicou display:none ao wrapper de todos os
+     cards da página /obras. Limpa inline display:none de qualquer
+     elemento com data-framer-name="Container" ou similar.          */
+  function uncoverHiddenObraCards() {
+    document
+      .querySelectorAll('[data-framer-name="Container"][style*="display"], [data-framer-name="Content"][style*="display"], [data-framer-name="Grid"][style*="display"]')
+      .forEach(function (el) {
+        if (el.style.display === 'none') {
+          el.style.display = '';
+        }
+      });
   }
 
   function fixObraCards() {
+    uncoverHiddenObraCards();
     document.querySelectorAll('a[href*="/obras/"]:not([data-vr-card-fixed])').forEach(function (a) {
       const href = a.getAttribute('href') || '';
       const slug = extractObraSlug(href);
