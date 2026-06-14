@@ -299,6 +299,77 @@
      não uma página interna sobre a empresa). Esconde-se sempre
      que esse texto aparece FORA da Case Section.
      ============================================================ */
+  /* ============================================================
+     CORRIGIR LAYOUT do dropdown 'Sobre Nós' no menu hamburger
+     ============================================================
+     O dropdown está em position:fixed com top:~198px e height:~174px,
+     ficando em overlay (z-index:11) sobre os items seguintes do menu
+     (Portefólio em y=200, Contactar em y=240 — completamente tapados
+     pelo dropdown). Solução: empurrar os items irmãos que vêm depois
+     de "Sobre Nós" para baixo do dropdown quando este estiver aberto.
+     ============================================================ */
+  function adjustDropdownLayout() {
+    /* Encontrar o "Sobre Nós" no menu drawer aberto */
+    const sobreP = Array.from(document.querySelectorAll('p')).find(function (p) {
+      return p.textContent.trim() === 'Sobre Nós' && p.getBoundingClientRect().width > 0;
+    });
+    if (!sobreP) return;
+
+    /* Walk up até encontrar o container do item "Sobre Nós" dentro
+       do drawer (geralmente o framer-rrp2at-container ou similar).  */
+    let sobreItem = sobreP;
+    for (let i = 0; i < 6 && sobreItem.parentElement; i++) {
+      const parent = sobreItem.parentElement;
+      if (parent.getAttribute('data-framer-name') === 'Links') break;
+      sobreItem = parent;
+    }
+
+    /* Procurar o dropdown box (position:fixed dentro da árvore do
+       Sobre Nós).                                                    */
+    let dropdownBox = null;
+    const candidates = sobreItem.querySelectorAll('*');
+    for (const c of candidates) {
+      const cs = getComputedStyle(c);
+      if (cs.position === 'fixed' && c.getBoundingClientRect().height > 50) {
+        dropdownBox = c;
+        break;
+      }
+    }
+
+    const isOpen = !!dropdownBox;
+    /* Achar os siblings de "Sobre Nós" no container Links */
+    const siblingsAfter = [];
+    let cur = sobreItem.nextElementSibling;
+    while (cur) {
+      siblingsAfter.push(cur);
+      cur = cur.nextElementSibling;
+    }
+
+    if (isOpen) {
+      /* Aplicar offset aos siblings depois de "Sobre Nós".
+         Altura do dropdown + 20px de respiro.                       */
+      const dropH = Math.round(dropdownBox.getBoundingClientRect().height);
+      const offset = dropH + 20;
+      siblingsAfter.forEach(function (sib) {
+        if (sib.getAttribute('data-vr-dropdown-offset') !== String(offset)) {
+          sib.style.marginTop = '';
+          if (sib === sobreItem.nextElementSibling) {
+            sib.style.marginTop = offset + 'px';
+          }
+          sib.setAttribute('data-vr-dropdown-offset', String(offset));
+        }
+      });
+    } else {
+      /* Dropdown fechado — limpar offsets anteriores */
+      siblingsAfter.forEach(function (sib) {
+        if (sib.hasAttribute('data-vr-dropdown-offset')) {
+          sib.style.marginTop = '';
+          sib.removeAttribute('data-vr-dropdown-offset');
+        }
+      });
+    }
+  }
+
   function hideStaleMenuItems() {
     document.querySelectorAll('p:not([data-vr-stale-hidden]), a:not([data-vr-stale-hidden])').forEach(function (el) {
       const text = (el.textContent || '').replace(/ /g, ' ').trim();
@@ -322,6 +393,7 @@
     fixNavLinks();
     fixObraCards();
     hideStaleMenuItems();
+    adjustDropdownLayout();
     let ticks = 0;
     const MAX_TICKS = 32;
     const intervalId = setInterval(function () {
@@ -329,6 +401,7 @@
       fixNavLinks();
       fixObraCards();
       hideStaleMenuItems();
+      adjustDropdownLayout();
       if (ticks >= MAX_TICKS) clearInterval(intervalId);
     }, 250);
 
@@ -343,10 +416,12 @@
         setTimeout(function () {
           fixNavLinks();
           hideStaleMenuItems();
+          adjustDropdownLayout();
         }, 50);
         setTimeout(function () {
           fixNavLinks();
           hideStaleMenuItems();
+          adjustDropdownLayout();
         }, 400); /* após animação Framer */
       },
       true /* capture phase: antes dos handlers do Framer */
