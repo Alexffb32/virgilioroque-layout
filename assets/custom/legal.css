@@ -1,0 +1,170 @@
+/* ============================================================
+   Páginas legais — Virgilio Roque
+   Tipografia e spacing para textos longos (Política Privacidade,
+   Termos e Condições, Política de Cookies).
+   Reusa as CSS variables do site para coerência visual.
+   ============================================================ */
+
+.vr-legal {
+  font-family: 'Geist', 'Inter', system-ui, sans-serif;
+  color: var(--token-59d490ae-42b4-4932-b976-7e1960b9ea0c, #ffffff);
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+@media (min-width: 768px) {
+  .vr-legal {
+    padding: 64px 32px 120px;
+  }
+}
+
+/* Título da página (h1) */
+.vr-legal__title {
+  font-family: 'Syne', 'Geist', sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+  color: inherit;
+}
+
+@media (min-width: 768px) {
+  .vr-legal__title {
+    font-size: 64px;
+    margin-bottom: 32px;
+  }
+}
+
+/* Bloco de metadados (Última atualização, Entidade, etc.) */
+.vr-legal__meta {
+  margin: 0 0 40px;
+  padding: 20px 24px;
+  border-left: 3px solid var(--token-e3adfd7e-12e7-4052-a406-4de3b1163565, #ff8d03);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 0 8px 8px 0;
+}
+
+.vr-legal__meta-row {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 6px;
+  opacity: 0.88;
+}
+
+.vr-legal__meta-row:last-child {
+  margin-bottom: 0;
+}
+
+.vr-legal__meta-row strong {
+  font-weight: 600;
+  opacity: 1;
+}
+
+/* Cada secção numerada */
+.vr-legal__section {
+  margin: 0 0 32px;
+}
+
+.vr-legal__heading {
+  font-family: 'Geist', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 32px 0 12px;
+  color: inherit;
+  /* Pequeno indicador laranja à esquerda (igual ao .vr-details__heading) */
+  position: relative;
+  padding-left: 16px;
+}
+
+.vr-legal__heading::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 4px;
+  height: 0.9em;
+  background: var(--token-e3adfd7e-12e7-4052-a406-4de3b1163565, #ff8d03);
+  border-radius: 2px;
+}
+
+@media (min-width: 768px) {
+  .vr-legal__heading {
+    font-size: 26px;
+  }
+}
+
+/* Parágrafos */
+.vr-legal__paragraph {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 14px;
+  opacity: 0.92;
+}
+
+@media (min-width: 768px) {
+  .vr-legal__paragraph {
+    font-size: 17px;
+  }
+}
+
+/* Lista simples (sem títulos) */
+.vr-legal__list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+}
+
+.vr-legal__list li {
+  position: relative;
+  padding: 0 0 0 24px;
+  margin: 0 0 10px;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.92;
+}
+
+.vr-legal__list li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0.7em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--token-e3adfd7e-12e7-4052-a406-4de3b1163565, #ff8d03);
+}
+
+/* Lista com sub-título inline ("Heading: descrição") */
+.vr-legal__list-titled {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+}
+
+.vr-legal__list-titled li {
+  position: relative;
+  padding: 0 0 0 24px;
+  margin: 0 0 14px;
+  font-size: 16px;
+  line-height: 1.65;
+  opacity: 0.92;
+}
+
+.vr-legal__list-titled li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0.8em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--token-e3adfd7e-12e7-4052-a406-4de3b1163565, #ff8d03);
+}
+
+.vr-legal__list-titled li strong {
+  font-weight: 600;
+  opacity: 1;
+}
