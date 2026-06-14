@@ -10,8 +10,13 @@
   display: none !important;
 }
 
-/* Linha de localização "Upper East Side, NY" + ícone do mapa */
-[data-framer-name="Property Location"] {
+/* Linha de localização "Upper East Side, NY" + ícone do mapa.
+   O Framer renderiza esta info em 2 componentes diferentes:
+   - Property Location (variante desktop): scoped via data-framer-name
+   - Icon Text Wrap dentro de [data-framer-name="Stack"]:
+     variante mobile/tablet. Escondemos ambas.                       */
+[data-framer-name="Property Location"],
+[data-framer-name="Stack"] > [data-framer-name="Icon Text Wrap"] {
   display: none !important;
 }
 

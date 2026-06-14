@@ -1,0 +1,362 @@
+[    1042ms] [WARNING] Caught a recoverable error. The site is still functional, but might have some UI flickering or degraded page load performance. If you are the author of this website, update external components and check recently added custom code or code overrides to fix the following server/client mismatches:
+ Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at pa (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:6:4569)
+    at us (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:13337)
+    at ec (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37372)
+    at $s (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37134)
+    at Qs (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37046)
+    at Ls (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:32130)
+    at wt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:10651)
+    at MessagePort.Et (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:11006) 
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1035:49851
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:59:19146
+    at div
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:26764
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at div
+    at div
+    at div
+    at div
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:30402
+    at section
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at cf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:72178)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/RCSXMAIAcA-O5eSR6UIak4CorKDpreF5HdUH7XxPJJ0.CSDbhuj8.mjs:1:10546
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:3:757
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at cf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:72178)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:120730
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at Zi (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:131683)
+    at Xd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:6129)
+    at Rv (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:6183)
+    at Suspense
+    at vl (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:71039)
+    at ew (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:32351)
+    at Td (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19142)
+    at Er (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:7359)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:2511
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at kt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:3:2957)
+    at Yd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:2003)
+    at Od (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19998)
+    at YT (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:18634)
+    at mn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:9287)
+    at sa (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:1423)
+    at gr (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:6693)
+    at sf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:7394)
+    at Lw (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:7719)
+    at Fn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:14159) @ https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:8
+[    1042ms] [WARNING] Caught a recoverable error. The site is still functional, but might have some UI flickering or degraded page load performance. If you are the author of this website, update external components and check recently added custom code or code overrides to fix the following server/client mismatches:
+ Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at da (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:6:4116)
+    at cp (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:68280)
+    at $s (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37073)
+    at Qs (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37046)
+    at Ls (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:32130)
+    at wt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:10651)
+    at MessagePort.Et (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:11006) 
+    at div
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:26764
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at div
+    at div
+    at div
+    at div
+    at div
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:30402
+    at section
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at cf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:72178)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/RCSXMAIAcA-O5eSR6UIak4CorKDpreF5HdUH7XxPJJ0.CSDbhuj8.mjs:1:10546
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:3:757
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at cf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:72178)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:120730
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at Zi (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:131683)
+    at Xd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:6129)
+    at Rv (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:6183)
+    at Suspense
+    at vl (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:71039)
+    at ew (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:32351)
+    at Td (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19142)
+    at Er (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:7359)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:2511
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at kt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:3:2957)
+    at Yd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:2003)
+    at Od (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19998)
+    at YT (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:18634)
+    at mn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:9287)
+    at sa (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:1423)
+    at gr (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:6693)
+    at sf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:7394)
+    at Lw (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:7719)
+    at Fn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:14159) @ https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:8
+[    1042ms] [WARNING] Caught a recoverable error. The site is still functional, but might have some UI flickering or degraded page load performance. If you are the author of this website, update external components and check recently added custom code or code overrides to fix the following server/client mismatches:
+ Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at da (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:6:4116)
+    at cp (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:68280)
+    at $s (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37073)
+    at Qs (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37046)
+    at Ls (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:32130)
+    at wt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:10651)
+    at MessagePort.Et (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:11006) 
+    at div
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:26764
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at div
+    at div
+    at div
+    at div
+    at div
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:30402
+    at section
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at cf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:72178)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/RCSXMAIAcA-O5eSR6UIak4CorKDpreF5HdUH7XxPJJ0.CSDbhuj8.mjs:1:10546
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:3:757
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at cf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:72178)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:120730
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at Zi (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:131683)
+    at Xd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:6129)
+    at Rv (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:6183)
+    at Suspense
+    at vl (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:71039)
+    at ew (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:32351)
+    at Td (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19142)
+    at Er (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:7359)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:2511
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at kt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:3:2957)
+    at Yd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:2003)
+    at Od (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19998)
+    at YT (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:18634)
+    at mn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:9287)
+    at sa (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:1423)
+    at gr (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:6693)
+    at sf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:7394)
+    at Lw (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:7719)
+    at Fn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:14159) @ https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:8
+[    1042ms] [WARNING] Caught a recoverable error. The site is still functional, but might have some UI flickering or degraded page load performance. If you are the author of this website, update external components and check recently added custom code or code overrides to fix the following server/client mismatches:
+ Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at da (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:6:4116)
+    at cp (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:68280)
+    at $s (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37073)
+    at Qs (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37046)
+    at Ls (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:32130)
+    at wt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:10651)
+    at MessagePort.Et (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:11006) 
+    at div
+    at div
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:30402
+    at section
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at cf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:72178)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/RCSXMAIAcA-O5eSR6UIak4CorKDpreF5HdUH7XxPJJ0.CSDbhuj8.mjs:1:10546
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:3:757
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at cf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:72178)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:120730
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at Zi (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:131683)
+    at Xd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:6129)
+    at Rv (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:6183)
+    at Suspense
+    at vl (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:71039)
+    at ew (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:32351)
+    at Td (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19142)
+    at Er (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:7359)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:2511
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at kt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:3:2957)
+    at Yd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:2003)
+    at Od (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19998)
+    at YT (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:18634)
+    at mn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:9287)
+    at sa (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:1423)
+    at gr (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:6693)
+    at sf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:7394)
+    at Lw (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:7719)
+    at Fn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:14159) @ https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:8
+[    1043ms] [WARNING] Caught a recoverable error. The site is still functional, but might have some UI flickering or degraded page load performance. If you are the author of this website, update external components and check recently added custom code or code overrides to fix the following server/client mismatches:
+ Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at da (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:6:4116)
+    at cp (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:68280)
+    at $s (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37073)
+    at Qs (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37046)
+    at Ls (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:32130)
+    at wt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:10651)
+    at MessagePort.Et (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:11006) 
+    at div
+    at cf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:72178)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/RCSXMAIAcA-O5eSR6UIak4CorKDpreF5HdUH7XxPJJ0.CSDbhuj8.mjs:1:10546
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:3:757
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at cf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:72178)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:120730
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at Zi (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:131683)
+    at Xd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:6129)
+    at Rv (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:6183)
+    at Suspense
+    at vl (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:71039)
+    at ew (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:32351)
+    at Td (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19142)
+    at Er (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:7359)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:2511
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at kt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:3:2957)
+    at Yd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:2003)
+    at Od (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19998)
+    at YT (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:18634)
+    at mn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:9287)
+    at sa (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:1423)
+    at gr (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:6693)
+    at sf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:7394)
+    at Lw (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:7719)
+    at Fn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:14159) @ https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:8
+[    1043ms] [WARNING] Caught a recoverable error. The site is still functional, but might have some UI flickering or degraded page load performance. If you are the author of this website, update external components and check recently added custom code or code overrides to fix the following server/client mismatches:
+ Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at da (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:6:4116)
+    at cp (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:68280)
+    at $s (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37073)
+    at Qs (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37046)
+    at Ls (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:32130)
+    at wt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:10651)
+    at MessagePort.Et (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:11006) 
+    at div
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at cf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:72178)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:120730
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at Zi (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:131683)
+    at Xd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:6129)
+    at Rv (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:6183)
+    at Suspense
+    at vl (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:71039)
+    at ew (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:32351)
+    at Td (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19142)
+    at Er (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:7359)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:2511
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at kt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:3:2957)
+    at Yd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:2003)
+    at Od (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19998)
+    at YT (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:18634)
+    at mn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:9287)
+    at sa (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:1423)
+    at gr (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:6693)
+    at sf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:7394)
+    at Lw (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:7719)
+    at Fn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:14159) @ https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:8
+[    1043ms] [WARNING] Caught a recoverable error. The site is still functional, but might have some UI flickering or degraded page load performance. If you are the author of this website, update external components and check recently added custom code or code overrides to fix the following server/client mismatches:
+ Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at da (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:6:4116)
+    at cp (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:68280)
+    at $s (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37073)
+    at Qs (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37046)
+    at Ls (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:32130)
+    at wt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:10651)
+    at MessagePort.Et (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:11006) 
+    at div
+    at div
+    at c (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:5742)
+    at cf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:72178)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:120730
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at Zi (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:131683)
+    at Xd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:6129)
+    at Rv (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:6183)
+    at Suspense
+    at vl (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:71039)
+    at ew (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:32351)
+    at Td (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19142)
+    at Er (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:7359)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:2511
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at kt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:3:2957)
+    at Yd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:2003)
+    at Od (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19998)
+    at YT (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:18634)
+    at mn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:9287)
+    at sa (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:1423)
+    at gr (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:6693)
+    at sf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:7394)
+    at Lw (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:7719)
+    at Fn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:14159) @ https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:8
+[    1043ms] [WARNING] Caught a recoverable error. The site is still functional, but might have some UI flickering or degraded page load performance. If you are the author of this website, update external components and check recently added custom code or code overrides to fix the following server/client mismatches:
+ Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at da (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:6:4116)
+    at cp (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:68280)
+    at $s (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37073)
+    at Qs (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37046)
+    at Ls (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:32130)
+    at wt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:10651)
+    at MessagePort.Et (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:11006) 
+    at div
+    at cf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:72178)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:120730
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at Zi (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:9:131683)
+    at Xd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:6129)
+    at Rv (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:6183)
+    at Suspense
+    at vl (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:71039)
+    at ew (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1027:32351)
+    at Td (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19142)
+    at Er (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:7359)
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:2511
+    at https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:115:45838
+    at kt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:3:2957)
+    at Yd (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:2003)
+    at Od (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:52:19998)
+    at YT (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:18634)
+    at mn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:9287)
+    at sa (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/motion.DI3_FDHN.mjs:9:1423)
+    at gr (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:49:6693)
+    at sf (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:54:7394)
+    at Lw (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:1034:7719)
+    at Fn (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/framer.CSc7oJLI.mjs:7:14159) @ https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:8
+[    1043ms] [WARNING] Caught a recoverable error. The site is still functional, but might have some UI flickering or degraded page load performance. If you are the author of this website, update external components and check recently added custom code or code overrides to fix the following server/client mismatches:
+ Error: Minified React error #422; visit https://reactjs.org/docs/error-decoder.html?invariant=422 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at ns (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:8255)
+    at $o (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:7196)
+    at cp (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:68482)
+    at $s (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37073)
+    at Qs (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:37046)
+    at Ls (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:8:32130)
+    at wt (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:10651)
+    at MessagePort.Et (https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/react.Ds5yKeyD.mjs:1:11006) null @ https://virgilioroque-layout.vercel.app/assets/framerusercontent.com/sites/4vpZkRjERrrb2gM15w7N73/script_main.DdAkOiPs.mjs:8

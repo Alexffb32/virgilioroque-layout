@@ -43,3 +43,35 @@ a[data-framer-name="Menu Link"][href="../artigos"],
 a[data-framer-name="Menu Link"][href="/artigos"] {
   display: none !important;
 }
+
+/* ============================================================
+   Limpeza de placeholders do footer (todas as páginas)
+   ============================================================ */
+
+/* Texto placeholder "Acompanhamos-te com todo o carinho na
+   arquitetura..." vindo do template Framer. O nome do componente
+   é o próprio texto inglês ("Provides advice & guidance...").
+   Único e seguro de esconder. */
+[data-framer-name^="Provides advice"] {
+  display: none !important;
+}
+
+/* Linha 'Direitos de autor e design por Layout Agency - @2025'.
+   O componente Copyright em si continua a mostrar o Alvará abaixo,
+   por isso escondemos apenas o sub-componente da Layout Agency. */
+[data-framer-name^="Copyright & design by"] {
+  display: none !important;
+}
+
+/* Link 'Grupo Empresarial' que escapou ao regex anterior (estava
+   numa variante mobile sem <p> wrapper). Apanhar pelo wrapper
+   data-framer-name="case study" que envolve o <a>. */
+[data-framer-name="case study"] a[href$="obras"] {
+  display: none !important;
+}
+
+/* Esconder o restante "Weekly Newsletter" placeholder (Essential
+   é o componente que mostra esse título de placeholder). */
+[data-framer-name="Essential"] {
+  display: none !important;
+}
