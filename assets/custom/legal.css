@@ -15,19 +15,41 @@
 }
 
 /* ============================================================
-   FIX CRÍTICO: o template do Framer tem o hero ("Desktop") com
-   overflow:hidden + height:650px fixo. Quando injectámos o nosso
-   .vr-legal (3000+ px) dentro do Text Wrapper, o conteúdo
-   transbordava para cima e ficava 99% invisível.
-   Forçamos o ancestor a expandir-se quando contém o .vr-legal.
+   FIX CRÍTICO: o template do Framer tem múltiplos containers
+   com overflow:hidden + height fixo que cortavam o nosso conteúdo.
+
+   1) framer-ZBvjq (page container, pai direto do Header): tem
+      height: 2040px fixed + overflow: hidden + flex column.
+      Resultado: tudo abaixo de 2040px era invisível, e o Footer
+      ficava sobreposto com o nosso .vr-legal.
+
+   2) Desktop/Tablet/Phone: hero com height: 650 fixed +
+      overflow: hidden.
+
+   3) Text Wrapper interno: align-self que causava y negativo.
+
+   Apanhamos pelo seletor estável :has() — selector dispara só
+   em páginas com a nossa secção legal (3 páginas legais).
    ============================================================ */
+
+/* PAGE CONTAINER (ancestral do Header Primary): expandir para
+   acomodar o nosso conteúdo + mostrar o Footer abaixo. */
+body:has(.vr-legal) #main,
+body:has(.vr-legal) > div,
+div:has(> header[data-framer-name="Header Primary"]):has(.vr-legal) {
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow: visible !important;
+}
+
+/* HERO (Desktop/Tablet/Phone): expandir para mostrar todo o
+   conteúdo legal injectado. */
 [data-framer-name="Desktop"]:has(.vr-legal),
 [data-framer-name="Tablet"]:has(.vr-legal),
 [data-framer-name="Phone"]:has(.vr-legal) {
   overflow: visible !important;
   height: auto !important;
   min-height: 0 !important;
-  display: block !important;
 }
 
 [data-framer-name="Desktop"]:has(.vr-legal) > div,
@@ -47,8 +69,7 @@
   justify-content: flex-start !important;
 }
 
-/* O Text Wrapper que contém o nosso .vr-legal: reset de
-   alignment e size para crescer naturalmente.                   */
+/* TEXT WRAPPER que contém o nosso .vr-legal: reset alignment. */
 [data-framer-name="Text Wrapper"]:has(.vr-legal) {
   height: auto !important;
   min-height: 0 !important;
