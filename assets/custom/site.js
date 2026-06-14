@@ -103,6 +103,8 @@
     'tlf: (+351) 275 971 394': 'tel:+351275971394',
     'fax: (+351) 275 971 534': 'tel:+351275971534',
     'tlm: 967 138 082 / 967 138 116 / 962 269 776': 'tel:+351967138082',
+    /* Variante usada noutra zona do template (sem prefixo "tlf:") */
+    '(+351) 275 971 394': 'tel:+351275971394',
     /* Notas das chamadas: não são clicáveis — removemos o href */
     '(Chamada para a rede fixa nacional)': '__remove__',
     '(Chamada para a rede móvel nacional)': '__remove__',
