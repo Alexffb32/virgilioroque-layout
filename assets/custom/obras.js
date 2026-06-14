@@ -123,16 +123,33 @@
 
     'estacao-tortosendo': {
       title: 'Estação Tortosendo',
+      subtitle: 'Modernização ao Serviço da Mobilidade Regional',
       location: 'Tortosendo, Covilhã',
       shortDescription:
         'Requalificação e modernização integral da Estação Ferroviária do Tortosendo, focada na melhoria das acessibilidades, segurança e durabilidade das infraestruturas para todos os utentes.',
-      longDescription: `Empreitada de modernização e requalificação da Estação Ferroviária do Tortosendo, adaptando esta infraestrutura pública aos exigentes padrões atuais de segurança, conforto e mobilidade regional.
-
-Engenharia e Reabilitação — Intervenção profunda em fachadas, coberturas e pavimentos para garantir maior isolamento e resistência ao tráfego diário. Atualização integral das redes elétricas, sistemas de iluminação e redes de escoamento de águas.
-
-Acessibilidade e Funcionalidade — Eliminação de barreiras arquitetónicas nos acessos e remodelação dos cais de embarque para garantir total mobilidade. Reorganização das zonas envolventes de ligação entre a estação, áreas de estacionamento e a via pública. Melhoria das áreas de espera para proporcionar maior conforto aos passageiros.
-
-Uma obra com o selo de rigor técnico e solidez da Virgílio Roque.`,
+      details: {
+        intro:
+          'Empreitada de modernização e requalificação da Estação Ferroviária do Tortosendo, adaptando esta infraestrutura pública aos exigentes padrões atuais de segurança, conforto e mobilidade regional.',
+        sections: [
+          {
+            heading: 'Engenharia e Reabilitação',
+            bullets: [
+              'Intervenção profunda em fachadas, coberturas e pavimentos para garantir maior isolamento e resistência ao tráfego diário.',
+              'Atualização integral das redes elétricas, sistemas de iluminação e redes de escoamento de águas.',
+            ],
+          },
+          {
+            heading: 'Acessibilidade e Funcionalidade',
+            bullets: [
+              'Eliminação de barreiras arquitetónicas nos acessos e remodelação dos cais de embarque para garantir total mobilidade.',
+              'Reorganização das zonas envolventes de ligação entre a estação, áreas de estacionamento e a via pública.',
+              'Melhoria das áreas de espera para proporcionar maior conforto aos passageiros.',
+            ],
+          },
+        ],
+        closingNote:
+          'Uma obra com o selo de rigor técnico e solidez da Virgílio Roque.',
+      },
       photos: photos('estacao-tortosendo', 'jpg', 3),
     },
 
@@ -241,6 +258,14 @@ Um projeto de referência que espelha o rigor técnico e a assinatura de confian
       }
       root.appendChild(block);
     });
+
+    /* Nota de fecho opcional (parágrafo destacado no fim).        */
+    if (obra.details.closingNote) {
+      const note = document.createElement('p');
+      note.className = 'vr-details__closing';
+      note.textContent = obra.details.closingNote;
+      root.appendChild(note);
+    }
 
     return root;
   }

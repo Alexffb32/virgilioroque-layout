@@ -279,3 +279,17 @@
   border-radius: 50%;
   background: var(--token-e3adfd7e-12e7-4052-a406-4de3b1163565, #ff8d03);
 }
+
+/* Frase de fecho — citação destacada no final da secção.        */
+.vr-details__closing {
+  font-size: 17px;
+  line-height: 1.6;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--token-fa16a3ef-909b-4fe8-b9b6-d5a056139983, #2c2c2c);
+  margin: 32px 0 0;
+  padding: 20px 24px;
+  border-left: 3px solid var(--token-e3adfd7e-12e7-4052-a406-4de3b1163565, #ff8d03);
+  background: rgba(255, 141, 3, 0.04);
+  border-radius: 0 8px 8px 0;
+}
