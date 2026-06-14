@@ -15,6 +15,11 @@
   display: none !important;
 }
 
+/* Banner "Case details" + texto 'Our featured projects showcase...' */
+[data-framer-name="Banner Section Secondary"] {
+  display: none !important;
+}
+
 /* ============================================================
    CARROSSEL — Galeria customizada das obras
    Layout: imagem grande (rota por todas) + 2 fixas à direita
