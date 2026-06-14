@@ -155,18 +155,33 @@
 
     'bloco-habitacional-quinta-do-pinheiro': {
       title: 'Bloco Habitacional — Quinta do Pinheiro',
+      subtitle: 'Grande Escala, Padrão Premium',
       location: 'Covilhã, Portugal',
       shortDescription:
         'Um dos maiores blocos habitacionais da cidade da Covilhã, este empreendimento residencial de grande escala destaca-se pela robustez construtiva e elevado padrão de qualidade.',
-      longDescription: `O Bloco Habitacional Quinta do Pinheiro afirma-se como um dos maiores edifícios residenciais da cidade da Covilhã. Este projeto de grande envergadura reflete a capacidade de execução logística e técnica da Virgílio Roque, aliando engenharia robusta a um design contemporâneo.
-
-Solidez e Conforto — Estrutura de grande porte com isolamento térmico e acústico de alta performance.
-
-Qualidade Superior — Utilização de materiais certificados de elevada durabilidade e baixa manutenção.
-
-Arquitetura Funcional — Frações amplas e otimizadas para maximizar a entrada de luz natural.
-
-Um projeto de referência que espelha o rigor técnico e a assinatura de confiança da Virgílio Roque.`,
+      details: {
+        intro:
+          'O Bloco Habitacional Quinta do Pinheiro afirma-se como um dos maiores edifícios residenciais da cidade da Covilhã. Este projeto de grande envergadura reflete a capacidade de execução logística e técnica da Virgílio Roque, aliando engenharia robusta a um design contemporâneo.',
+        sections: [
+          {
+            heading: 'Solidez e Conforto',
+            paragraph:
+              'Estrutura de grande porte com isolamento térmico e acústico de alta performance.',
+          },
+          {
+            heading: 'Qualidade Superior',
+            paragraph:
+              'Utilização de materiais certificados de elevada durabilidade e baixa manutenção.',
+          },
+          {
+            heading: 'Arquitetura Funcional',
+            paragraph:
+              'Frações amplas e otimizadas para maximizar a entrada de luz natural.',
+          },
+        ],
+        closingNote:
+          'Um projeto de referência que espelha o rigor técnico e a assinatura de confiança da Virgílio Roque.',
+      },
       photos: photos('bloco-habitacional-quinta-do-pinheiro', 'jpg', 7),
     },
   };
