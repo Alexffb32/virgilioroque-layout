@@ -415,33 +415,39 @@
     return root;
   }
 
-  /* Encontra o Text Wrapper principal (o que tem o título da página
-     com <h1>) e substitui o seu conteúdo pela nossa secção legal.
-     Devolve true se a injecção foi feita NESTA chamada, false caso
-     contrário (já estava feita ou não há onde injectar).            */
+  /* Estratégia: o template do Framer tem o hero ("Desktop") dentro
+     de um page container flex com height fixo. Injectar o nosso
+     conteúdo lá dentro causa o conteúdo a transbordar (invisível
+     ou sobreposto com o footer).
+
+     Em vez disso, INSERIMOS o .vr-legal como sibling do Footer
+     Section, dentro do mesmo flex container. Como flex column,
+     fica entre o hero (collapsed) e o footer.
+
+     Escondemos o hero original separadamente via CSS.            */
   function injectLegalContent(page) {
-    /* Se a nossa secção já está presente E o pai dela ainda é o
-       Text Wrapper, está tudo OK. Mas se o React do Framer
-       re-renderizou e tirou a nossa secção, precisamos reinjectar. */
+    /* Idempotente: se já está como sibling do Footer Section, OK. */
     const existing = document.querySelector('.vr-legal');
-    if (existing && existing.closest('[data-framer-name="Text Wrapper"]')) {
-      return false; /* nada a fazer mas continuamos a polling */
+    if (existing) {
+      const footerSiblingCheck = existing.nextElementSibling;
+      if (
+        footerSiblingCheck &&
+        footerSiblingCheck.getAttribute('data-framer-name') === 'Footer Section'
+      ) {
+        return false; /* já está no sítio correcto */
+      }
+      /* Estava num sítio errado (ex: ainda no Text Wrapper). Tira. */
+      existing.remove();
     }
 
-    /* Procura o primeiro Text Wrapper com <h1> — é o container do
-       título "Termos e Condições" placeholder.                    */
-    const wrappers = document.querySelectorAll('[data-framer-name="Text Wrapper"]');
-    let mainWrapper = null;
-    for (const w of wrappers) {
-      if (w.querySelector('h1')) {
-        mainWrapper = w;
-        break;
-      }
-    }
-    if (!mainWrapper) return false;
+    /* Encontrar o Footer Section para inserir o .vr-legal antes dele. */
+    const footer = document.querySelector('[data-framer-name="Footer Section"]');
+    if (!footer) return false;
+    const flexParent = footer.parentElement;
+    if (!flexParent) return false;
 
     const section = buildLegalSection(page);
-    mainWrapper.replaceChildren(section);
+    flexParent.insertBefore(section, footer);
     return true;
   }
 

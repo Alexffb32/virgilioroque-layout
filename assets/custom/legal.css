@@ -15,69 +15,25 @@
 }
 
 /* ============================================================
-   FIX CRÍTICO: o template do Framer tem múltiplos containers
-   com overflow:hidden + height fixo que cortavam o nosso conteúdo.
+   ESCONDER O HERO PLACEHOLDER nas páginas legais.
+   O legal.js move o .vr-legal para fora do hero (insere como
+   sibling do Footer Section). Por isso o hero original — com
+   placeholder "Termos e Condições" em cima do fundo da máquina
+   de escrever — fica vazio e devia desaparecer.
 
-   1) framer-ZBvjq (page container, pai direto do Header): tem
-      height: 2040px fixed + overflow: hidden + flex column.
-      Resultado: tudo abaixo de 2040px era invisível, e o Footer
-      ficava sobreposto com o nosso .vr-legal.
+   Apanhar pelo Text Wrapper que estava a conter o título <h1>.
+   :has() apanha só na página legal porque legal.css só carrega lá. */
+[data-framer-name="Desktop"]:has(> div > div > [data-framer-name="Text Wrapper"] > h1),
+[data-framer-name="Tablet"]:has(> div > div > [data-framer-name="Text Wrapper"] > h1),
+[data-framer-name="Phone"]:has(> div > div > [data-framer-name="Text Wrapper"] > h1) {
+  display: none !important;
+}
 
-   2) Desktop/Tablet/Phone: hero com height: 650 fixed +
-      overflow: hidden.
-
-   3) Text Wrapper interno: align-self que causava y negativo.
-
-   Apanhamos pelo seletor estável :has() — selector dispara só
-   em páginas com a nossa secção legal (3 páginas legais).
-   ============================================================ */
-
-/* PAGE CONTAINER (ancestral do Header Primary): expandir para
-   acomodar o nosso conteúdo + mostrar o Footer abaixo. */
-body:has(.vr-legal) #main,
-body:has(.vr-legal) > div,
-div:has(> header[data-framer-name="Header Primary"]):has(.vr-legal) {
+/* Garantir que o page container respira (em vez de height fixed). */
+body:has(.vr-legal) div:has(> header[data-framer-name="Header Primary"]) {
   height: auto !important;
   min-height: 100vh !important;
   overflow: visible !important;
-}
-
-/* HERO (Desktop/Tablet/Phone): expandir para mostrar todo o
-   conteúdo legal injectado. */
-[data-framer-name="Desktop"]:has(.vr-legal),
-[data-framer-name="Tablet"]:has(.vr-legal),
-[data-framer-name="Phone"]:has(.vr-legal) {
-  overflow: visible !important;
-  height: auto !important;
-  min-height: 0 !important;
-}
-
-[data-framer-name="Desktop"]:has(.vr-legal) > div,
-[data-framer-name="Tablet"]:has(.vr-legal) > div,
-[data-framer-name="Phone"]:has(.vr-legal) > div {
-  overflow: visible !important;
-  height: auto !important;
-  min-height: 0 !important;
-}
-
-[data-framer-name="Desktop"]:has(.vr-legal) > div > div,
-[data-framer-name="Tablet"]:has(.vr-legal) > div > div,
-[data-framer-name="Phone"]:has(.vr-legal) > div > div {
-  height: auto !important;
-  min-height: 0 !important;
-  align-self: stretch !important;
-  justify-content: flex-start !important;
-}
-
-/* TEXT WRAPPER que contém o nosso .vr-legal: reset alignment. */
-[data-framer-name="Text Wrapper"]:has(.vr-legal) {
-  height: auto !important;
-  min-height: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  align-self: stretch !important;
-  position: static !important;
-  transform: none !important;
 }
 
 .vr-legal {
