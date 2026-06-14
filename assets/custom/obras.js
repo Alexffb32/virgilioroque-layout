@@ -475,14 +475,19 @@
   }
 
   /* Substitui o "Image Wrapper" (galeria original do Framer) pelo
-     nosso carrossel. Idempotente: se já foi feito, não repete.    */
+     nosso carrossel.
+     Re-injecta se o React do Framer apagou a nossa cópia anterior. */
   function injectCarousel(obra) {
-    if (document.querySelector('.vr-carousel')) return true;
+    /* Se o nosso carrossel está presente E o pai ainda é um
+       Image Wrapper, está OK.                                     */
+    const existing = document.querySelector('.vr-carousel');
+    if (existing && existing.closest('[data-framer-name="Image Wrapper"]')) {
+      return false; /* nada a fazer */
+    }
     const wrapper = document.querySelector('[data-framer-name="Image Wrapper"]');
     if (!wrapper) return false;
     const carousel = buildCarousel(obra);
     if (!carousel) return false;
-    /* replaceChildren: limpa filhos antigos sem interpretar HTML */
     wrapper.replaceChildren(carousel);
     return true;
   }
@@ -493,20 +498,23 @@
     const obra = OBRAS[slug];
     updatePageTitle(obra);
 
-    let textsDone = applyObraContent(obra);
-    let carouselDone = injectCarousel(obra);
-    if (textsDone && carouselDone) return;
+    /* Tentar imediatamente, depois polling 4Hz × 8s SEM parar.
+       Evita perder o nosso conteúdo se o React do Framer fizer
+       re-render (acontece em viewport >= 768px).                  */
+    applyObraContent(obra);
+    injectCarousel(obra);
 
-    /* Polling em vez de MutationObserver: evita ping-pong com a
-       hidratação do React do Framer. 4Hz por 8 segundos, pára
-       logo que ambos os trabalhos estejam feitos.                */
+    /* Polling 4Hz por 8 segundos sempre — não pára em sucesso
+       intermédio. As funções applyObraContent e injectCarousel
+       são idempotentes (verificam se já está OK antes de mexer),
+       então o overhead é desprezável. Custo: 32 calls × 250ms.   */
     let ticks = 0;
-    const MAX_TICKS = 32; /* 32 × 250ms = 8s */
+    const MAX_TICKS = 32;
     const intervalId = setInterval(function () {
       ticks++;
-      if (!textsDone) textsDone = applyObraContent(obra);
-      if (!carouselDone) carouselDone = injectCarousel(obra);
-      if ((textsDone && carouselDone) || ticks >= MAX_TICKS) {
+      applyObraContent(obra);
+      injectCarousel(obra);
+      if (ticks >= MAX_TICKS) {
         clearInterval(intervalId);
       }
     }, 250);
