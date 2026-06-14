@@ -2,11 +2,16 @@
    Customizações páginas de obras — Virgilio Roque
    ============================================================ */
 
-/* Etapa 3: Esconder o card "Property / $298,000 / Request Info"
-   Usamos display:none com !important para vencer o CSS inline
-   do Framer. O elemento continua no DOM (para o React não partir),
-   mas não é visível nem ocupa espaço.                         */
+/* Esconder componentes do template não usados nas páginas das obras.
+   Mantemos no DOM (não rebenta o React) mas invisíveis.            */
+
+/* Card lateral "Property / $298,000 / Request Info" */
 [data-framer-name="Property Sidebar"] {
+  display: none !important;
+}
+
+/* Linha de localização "Upper East Side, NY" + ícone do mapa */
+[data-framer-name="Property Location"] {
   display: none !important;
 }
 
