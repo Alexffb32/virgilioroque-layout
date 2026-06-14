@@ -129,7 +129,13 @@
 
   function fixNavLinks() {
     document.querySelectorAll('a:not([data-vr-fixed])').forEach(function (a) {
-      const text = (a.textContent || '').trim();
+      /* Normalizar non-breaking spaces (U+00A0) e múltiplos espaços
+         para space normal — o Framer usa   em alguns textos
+         (ex: "tlf: (+351)...") e isso impedia o match.        */
+      const text = (a.textContent || '')
+        .replace(/ /g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
       if (!text) return;
       const action = LINK_HREF_MAP[text];
       if (!action) return;
