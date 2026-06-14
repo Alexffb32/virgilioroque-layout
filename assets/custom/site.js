@@ -242,29 +242,44 @@
         return;
       }
 
-      /* Corrigir textos errados nos cards */
+      /* Corrigir textos errados nos cards.
+         Os títulos NÃO têm font-weight bold (font-weight: 400 igual
+         à localização). Usamos ORDEM em vez de styling: 1º texto
+         encontrado dentro do <a> = título, 2º = localização.      */
       const fix = SLUG_CARD_FIXES[slug];
       if (!fix) return;
-      /* O card normalmente tem 2 elementos de texto: título +
-         localização. Procuramos por <p>/<h2>/<h3>/<span> dentro
-         do <a> que correspondam aos textos errados.              */
-      const textNodes = a.querySelectorAll('p, h1, h2, h3, h4, h5, span');
-      textNodes.forEach(function (el) {
-        if (el.children.length > 0) return; /* só folhas */
-        const txt = (el.textContent || '').replace(/ /g, ' ').trim();
-        if (!txt) return;
-        /* Heurística: títulos têm font-weight bold ou são h*;
-           localizações são textos curtos com nome de cidade.     */
-        const tag = el.tagName.toLowerCase();
-        const isHeading = /^h[1-6]$/.test(tag);
-        if (isHeading || el.style.fontWeight === 'bold' || parseFloat(getComputedStyle(el).fontWeight) >= 600) {
-          /* Provavelmente é o título da obra                       */
-          if (txt !== fix.title) el.textContent = fix.title;
-        } else if (/^(Covilh[aã]|Tortosendo|Portim[aã]o|Vila do Ferro|Sertã|Penamacor)$/i.test(txt)) {
-          /* Provavelmente é a localização                          */
-          if (txt !== fix.location) el.textContent = fix.location;
-        }
+
+      /* Apanhar todos os <p>/<span>/<h*> com texto, pela ordem
+         em que aparecem no DOM (TreeWalker garante ordem). */
+      const walker = document.createTreeWalker(a, NodeFilter.SHOW_ELEMENT, {
+        acceptNode: function (n) {
+          /* Só leaf elements com texto e tag de texto */
+          if (n.children.length > 0) return NodeFilter.FILTER_SKIP;
+          if (!/^(P|SPAN|H[1-6]|DIV)$/.test(n.tagName)) return NodeFilter.FILTER_SKIP;
+          const t = (n.textContent || '').trim();
+          if (!t) return NodeFilter.FILTER_SKIP;
+          return NodeFilter.FILTER_ACCEPT;
+        },
       });
+
+      const textElements = [];
+      let node;
+      while ((node = walker.nextNode())) {
+        const t = (node.textContent || '').replace(/ /g, ' ').trim();
+        if (t) textElements.push({ el: node, text: t });
+      }
+
+      /* Espera-se 2 elementos: [título, localização].
+         Mas se o card tem só 1 (variante mobile compact), trata-se
+         o único elemento como título.                              */
+      if (textElements.length >= 1) {
+        const titleEl = textElements[0];
+        if (titleEl.text !== fix.title) titleEl.el.textContent = fix.title;
+      }
+      if (textElements.length >= 2) {
+        const locEl = textElements[1];
+        if (locEl.text !== fix.location) locEl.el.textContent = fix.location;
+      }
     });
   }
 
