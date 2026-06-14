@@ -18,11 +18,22 @@
    chama hidePlaceholderHero() em todos os 3 breakpoints — mais
    robusto que CSS :has() que depende da hierarquia exata).      */
 
-/* Garantir que o page container respira (em vez de height fixed). */
+/* Garantir que o page container respira (em vez de height fixed).
+   NÃO usar min-height: 100vh porque os divs intermédios com
+   flexGrow:1 vão preencher o espaço, empurrando o .vr-legal para
+   o meio da página com gap branco no topo.                       */
 body:has(.vr-legal) div:has(> header[data-framer-name="Header Primary"]) {
   height: auto !important;
-  min-height: 100vh !important;
+  min-height: 0 !important;
   overflow: visible !important;
+}
+
+/* Colapsar os divs intermédios vazios (entre o Desktop hidden e
+   o nosso .vr-legal) que tinham flexGrow:1 e ocupavam ~530px. */
+body:has(.vr-legal) div:has(> header[data-framer-name="Header Primary"]) > div:not([data-framer-name="Footer Section"]):not(:has(.vr-legal)) {
+  flex-grow: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
 }
 
 /* Fundo escuro próprio do .vr-legal — corresponde ao design dark
