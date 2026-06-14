@@ -78,7 +78,6 @@
 
     'edificio-faculdade-medicina': {
       title: 'Edifício Junto à Faculdade de Medicina',
-      subtitle: 'Centralidade, Conforto e Excelência',
       location: 'Covilhã, Portugal',
       shortDescription:
         'Edifício residencial junto à Faculdade de Medicina da UBI, ideal para investimento ou habitação própria.',
@@ -123,7 +122,6 @@
 
     'estacao-tortosendo': {
       title: 'Estação Tortosendo',
-      subtitle: 'Modernização ao Serviço da Mobilidade Regional',
       location: 'Tortosendo, Covilhã',
       shortDescription:
         'Requalificação e modernização integral da Estação Ferroviária do Tortosendo, focada na melhoria das acessibilidades, segurança e durabilidade das infraestruturas para todos os utentes.',
@@ -154,8 +152,7 @@
     },
 
     'bloco-habitacional-quinta-do-pinheiro': {
-      title: 'Bloco Habitacional — Quinta do Pinheiro',
-      subtitle: 'Grande Escala, Padrão Premium',
+      title: 'Bloco Habitacional - Quinta do Pinheiro',
       location: 'Covilhã, Portugal',
       shortDescription:
         'Um dos maiores blocos habitacionais da cidade da Covilhã, este empreendimento residencial de grande escala destaca-se pela robustez construtiva e elevado padrão de qualidade.',
@@ -230,11 +227,15 @@
     root.className = 'vr-details';
     root.setAttribute('aria-label', 'Descrição detalhada da obra');
 
-    /* Título da secção: subtitle da obra OU 'Sobre o Empreendimento' */
-    const heading = document.createElement('h2');
-    heading.className = 'vr-details__title';
-    heading.textContent = obra.subtitle || 'Sobre o Empreendimento';
-    root.appendChild(heading);
+    /* Título da secção: só renderiza se a obra tiver subtitle.
+       Caso contrário, vamos direto para o intro + secções (mais
+       fiel ao texto original enviado pelo cliente).               */
+    if (obra.subtitle) {
+      const heading = document.createElement('h2');
+      heading.className = 'vr-details__title';
+      heading.textContent = obra.subtitle;
+      root.appendChild(heading);
+    }
 
     /* Parágrafo introdutório */
     if (obra.details.intro) {

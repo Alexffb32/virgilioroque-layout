@@ -164,13 +164,119 @@
     });
   }
 
+  /* ============================================================
+     CORRIGIR CARDS DE OBRAS na home / listagem
+     ============================================================
+     O CMS interno do Framer ainda tem todas as obras antigas com
+     títulos errados/typos. Como não podemos editar os binários
+     .framercms sem risco, corrigimos via runtime:
+
+     - SLUGS_TO_HIDE: cards de obras eliminadas que devem desaparecer
+     - SLUG_CARD_FIXES: mapeamento slug → { title, location }
+       para sobrescrever textos errados nos cards visíveis
+
+     Detectamos cards pelo <a href> que aponta para /obras/SLUG e
+     subimos para esconder ou para alterar os textos dentro.
+     ============================================================ */
+  const SLUGS_TO_HIDE = ['duplex', 'centro-interpretativo-da-cereja'];
+
+  const SLUG_CARD_FIXES = {
+    'empreendimento-cidade-nova': {
+      title: 'Empreendimento Cidade Nova',
+      location: 'Covilhã',
+    },
+    'edificio-faculdade-medicina': {
+      title: 'Edifício Junto à Faculdade de Medicina',
+      location: 'Covilhã',
+    },
+    'estacao-tortosendo': {
+      title: 'Estação Tortosendo',
+      location: 'Tortosendo',
+    },
+    'bloco-habitacional-quinta-do-pinheiro': {
+      title: 'Bloco Habitacional - Quinta do Pinheiro',
+      location: 'Covilhã',
+    },
+  };
+
+  /* Devolve o slug da obra a partir do href do card.              */
+  function extractObraSlug(href) {
+    const m = /\/obras\/([a-z0-9-]+)\/?(?:[?#]|$)/i.exec(href);
+    return m ? m[1] : null;
+  }
+
+  /* Encontra o "card container" — o elemento mais próximo que
+     parece o card todo (não só o <a> interno). Heurística: subir
+     enquanto o tamanho do elemento crescer; parar quando atingir
+     uma section ou grid container típico do Framer.                */
+  function findCardContainer(anchor) {
+    let cur = anchor;
+    let lastArea = 0;
+    /* Subir até 6 níveis ou enquanto a área aumenta              */
+    for (let i = 0; i < 6 && cur && cur.parentElement; i++) {
+      const r = cur.getBoundingClientRect();
+      const area = r.width * r.height;
+      /* Se o pai é a "Case Section" ou "Service Section", já
+         demos um nível a mais — devolve current.                 */
+      const parentName = cur.parentElement.getAttribute('data-framer-name') || '';
+      if (/Section$/.test(parentName) || /Wrapper$/.test(parentName)) {
+        return cur;
+      }
+      cur = cur.parentElement;
+      lastArea = area;
+    }
+    return anchor;
+  }
+
+  function fixObraCards() {
+    document.querySelectorAll('a[href*="/obras/"]:not([data-vr-card-fixed])').forEach(function (a) {
+      const href = a.getAttribute('href') || '';
+      const slug = extractObraSlug(href);
+      if (!slug) return;
+      a.setAttribute('data-vr-card-fixed', '1');
+
+      /* Esconder cards de obras eliminadas */
+      if (SLUGS_TO_HIDE.indexOf(slug) !== -1) {
+        const card = findCardContainer(a);
+        if (card) card.style.display = 'none';
+        return;
+      }
+
+      /* Corrigir textos errados nos cards */
+      const fix = SLUG_CARD_FIXES[slug];
+      if (!fix) return;
+      /* O card normalmente tem 2 elementos de texto: título +
+         localização. Procuramos por <p>/<h2>/<h3>/<span> dentro
+         do <a> que correspondam aos textos errados.              */
+      const textNodes = a.querySelectorAll('p, h1, h2, h3, h4, h5, span');
+      textNodes.forEach(function (el) {
+        if (el.children.length > 0) return; /* só folhas */
+        const txt = (el.textContent || '').replace(/ /g, ' ').trim();
+        if (!txt) return;
+        /* Heurística: títulos têm font-weight bold ou são h*;
+           localizações são textos curtos com nome de cidade.     */
+        const tag = el.tagName.toLowerCase();
+        const isHeading = /^h[1-6]$/.test(tag);
+        if (isHeading || el.style.fontWeight === 'bold' || parseFloat(getComputedStyle(el).fontWeight) >= 600) {
+          /* Provavelmente é o título da obra                       */
+          if (txt !== fix.title) el.textContent = fix.title;
+        } else if (/^(Covilh[aã]|Tortosendo|Portim[aã]o|Vila do Ferro|Sertã|Penamacor)$/i.test(txt)) {
+          /* Provavelmente é a localização                          */
+          if (txt !== fix.location) el.textContent = fix.location;
+        }
+      });
+    });
+  }
+
   function startNavFixer() {
     fixNavLinks();
+    fixObraCards();
     let ticks = 0;
     const MAX_TICKS = 32;
     const intervalId = setInterval(function () {
       ticks++;
       fixNavLinks();
+      fixObraCards();
       if (ticks >= MAX_TICKS) clearInterval(intervalId);
     }, 250);
   }
