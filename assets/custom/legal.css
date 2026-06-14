@@ -14,6 +14,51 @@
   display: none !important;
 }
 
+/* ============================================================
+   FIX CRÍTICO: o template do Framer tem o hero ("Desktop") com
+   overflow:hidden + height:650px fixo. Quando injectámos o nosso
+   .vr-legal (3000+ px) dentro do Text Wrapper, o conteúdo
+   transbordava para cima e ficava 99% invisível.
+   Forçamos o ancestor a expandir-se quando contém o .vr-legal.
+   ============================================================ */
+[data-framer-name="Desktop"]:has(.vr-legal),
+[data-framer-name="Tablet"]:has(.vr-legal),
+[data-framer-name="Phone"]:has(.vr-legal) {
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 0 !important;
+  display: block !important;
+}
+
+[data-framer-name="Desktop"]:has(.vr-legal) > div,
+[data-framer-name="Tablet"]:has(.vr-legal) > div,
+[data-framer-name="Phone"]:has(.vr-legal) > div {
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+[data-framer-name="Desktop"]:has(.vr-legal) > div > div,
+[data-framer-name="Tablet"]:has(.vr-legal) > div > div,
+[data-framer-name="Phone"]:has(.vr-legal) > div > div {
+  height: auto !important;
+  min-height: 0 !important;
+  align-self: stretch !important;
+  justify-content: flex-start !important;
+}
+
+/* O Text Wrapper que contém o nosso .vr-legal: reset de
+   alignment e size para crescer naturalmente.                   */
+[data-framer-name="Text Wrapper"]:has(.vr-legal) {
+  height: auto !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  align-self: stretch !important;
+  position: static !important;
+  transform: none !important;
+}
+
 .vr-legal {
   font-family: 'Geist', 'Inter', system-ui, sans-serif;
   color: var(--token-59d490ae-42b4-4932-b976-7e1960b9ea0c, #ffffff);
