@@ -459,21 +459,35 @@
     /* O menu hamburger mobile é lazy-mounted (Framer só renderiza
        os items quando o utilizador abre o menu). Como o polling
        inicial pode ter parado antes disso, re-aplicamos os fixes
-       em CADA clique no documento. Idempotente via markers
-       data-vr-fixed e data-vr-stale-hidden, custo desprezável.    */
+       em CADA clique no documento. Idempotente via markers,
+       custo desprezável.
+
+       BURST POLLING (2s): em vez de só 2 timeouts (50ms + 400ms),
+       corremos 10 vezes em 2 segundos (200ms cada). Cobre race
+       conditions onde o utilizador clica rapidamente abrir/fechar
+       o dropdown — o estado pode mudar entre clicks e queremos
+       o margin-top a reflectir o estado final, não um transitório. */
+    let burstIntervalId = null;
+    let burstTicks = 0;
+    function clickBurstFix() {
+      fixNavLinks();
+      hideStaleMenuItems();
+      adjustDropdownLayout();
+    }
     document.addEventListener(
       'click',
       function () {
-        setTimeout(function () {
-          fixNavLinks();
-          hideStaleMenuItems();
-          adjustDropdownLayout();
-        }, 50);
-        setTimeout(function () {
-          fixNavLinks();
-          hideStaleMenuItems();
-          adjustDropdownLayout();
-        }, 400); /* após animação Framer */
+        if (burstIntervalId) clearInterval(burstIntervalId);
+        burstTicks = 0;
+        clickBurstFix(); /* imediato */
+        burstIntervalId = setInterval(function () {
+          burstTicks++;
+          clickBurstFix();
+          if (burstTicks >= 10) {
+            clearInterval(burstIntervalId);
+            burstIntervalId = null;
+          }
+        }, 200);
       },
       true /* capture phase: antes dos handlers do Framer */
     );
