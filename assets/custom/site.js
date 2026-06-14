@@ -339,11 +339,28 @@
       if (parent.getAttribute('data-framer-name') === 'Links') break;
       sobreItem = parent;
     }
-    if (sobreItem.parentElement?.getAttribute('data-framer-name') !== 'Links') return;
+    const linksContainer = sobreItem.parentElement;
+    if (linksContainer?.getAttribute('data-framer-name') !== 'Links') return;
 
-    /* Achar o primeiro sibling depois do "Sobre Nós" no container.  */
-    const firstSiblingAfter = sobreItem.nextElementSibling;
-    if (!firstSiblingAfter) return;
+    /* Os children do Links usam CSS flex `order` para ordem visual.
+       O DOM order é diferente da ordem visual:
+         DOM: Inicio, Portefólio, Sobre Nós, Contactar, Blog
+         Visual: Inicio (1), Sobre Nós (7), Portefólio (8), Contactar (9), Blog (10)
+       Por isso `nextElementSibling` no DOM (=Contactar) NÃO é o
+       sibling visual a empurrar. Tem de ser o de menor `order`
+       maior que o do "Sobre Nós".                                  */
+    const sobreOrder = parseFloat(getComputedStyle(sobreItem).order) || 0;
+    let nextVisualSibling = null;
+    let nextVisualOrder = Infinity;
+    Array.from(linksContainer.children).forEach(function (sib) {
+      if (sib === sobreItem) return;
+      const sibOrder = parseFloat(getComputedStyle(sib).order) || 0;
+      if (sibOrder > sobreOrder && sibOrder < nextVisualOrder) {
+        nextVisualOrder = sibOrder;
+        nextVisualSibling = sib;
+      }
+    });
+    if (!nextVisualSibling) return;
 
     const isOpen = !!dropdownOpenMarker;
 
@@ -357,18 +374,20 @@
         dropdownBox = dropdownBox.parentElement;
       }
       const dropH = Math.round(dropdownBox.getBoundingClientRect().height);
-      const offset = Math.max(dropH + 20, 200); /* mínimo 200px */
-      const currentOffset = firstSiblingAfter.getAttribute('data-vr-dropdown-offset');
+      const offset = Math.max(dropH + 20, 200);
+      const currentOffset = nextVisualSibling.getAttribute('data-vr-dropdown-offset');
       if (currentOffset !== String(offset)) {
-        firstSiblingAfter.style.marginTop = offset + 'px';
-        firstSiblingAfter.setAttribute('data-vr-dropdown-offset', String(offset));
+        nextVisualSibling.style.marginTop = offset + 'px';
+        nextVisualSibling.setAttribute('data-vr-dropdown-offset', String(offset));
       }
     } else {
-      /* Dropdown fechado — limpar margem */
-      if (firstSiblingAfter.hasAttribute('data-vr-dropdown-offset')) {
-        firstSiblingAfter.style.marginTop = '';
-        firstSiblingAfter.removeAttribute('data-vr-dropdown-offset');
-      }
+      /* Dropdown fechado — limpar margem.                           */
+      Array.from(linksContainer.children).forEach(function (sib) {
+        if (sib.hasAttribute('data-vr-dropdown-offset')) {
+          sib.style.marginTop = '';
+          sib.removeAttribute('data-vr-dropdown-offset');
+        }
+      });
     }
   }
 
